@@ -6,7 +6,7 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/ejz9.github.io/', // /ejz9.github.io/
+  base: '/', // /ejz9.github.io/
   plugins: [
     vue(),
     vueDevTools(),
