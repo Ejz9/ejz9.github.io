@@ -4,6 +4,7 @@ import About from '@/views/About.vue'
 import Projects from "@/views/Projects.vue";
 import Contact from "@/views/Contact.vue";
 import Skills from "@/views/Skills.vue";
+import HomeRefactor from "@/views/HomeRefactor.vue";
 
 const routes = [
     { path: '/', name: 'Home', component: Home },

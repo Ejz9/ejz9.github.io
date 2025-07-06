@@ -3,8 +3,8 @@
 </script>
 
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-slate-900 to-gray-800 text-white py-16 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-4xl mx-auto">
+  <div class="text-center min-h-screen bg-gradient-to-br from-slate-900 to-gray-800 text-white py-16 px-4 sm:px-6 lg:px-8">
+    <div class="w-full mx-auto px-4">
       <div class="mb-16 text-center">
         <h2 class="text-center font-mono text-lg mb-4 text-indigo-400 animate-pulse drop-shadow-[0_0_0.3rem_#7c3aed]">
           Hello World!
@@ -12,20 +12,20 @@
         <h1 class="text-5xl font-bold mb-4">Edward Zurakowski</h1>
         <h3 class="text-2xl font-light text-gray-300 mb-8">Full Stack Tinkerer</h3>
 
-        <p class="text-lg text-gray-300 leading-relaxed mb-8 max-w-2xl mx-auto">
+        <p class="text-lg text-gray-300 leading-relaxed mb-8 mx-auto">
           I am an aspiring professional with an interest in Computer Science and Cybersecurity.
           Currently I am a student in my senior year attending the University of Wisconsin-Whitewater.
           I am pursuing a Bachelor's of Science in Computer Science with a minor in Cybersecurity.
         </p>
 
-        <p class="text-lg text-gray-300 leading-relaxed mb-8 max-w-2xl mx-auto">
+        <p class="text-lg text-gray-300 leading-relaxed mb-8 mx-auto">
           I have a keen interest in coding software, and building tools to help achieve specific goals.
           Also, I am an enthusiast for Open-Source and everything under its' umbrella.
         </p>
 
         <div class="mt-8">
-          <a href="#projects" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-6 rounded-lg mr-4 transition duration-200">View Projects</a>
-          <a href="#contact" class="border border-indigo-600 text-indigo-400 hover:bg-indigo-600 hover:text-white font-medium py-3 px-6 rounded-lg transition duration-200">Contact Me</a>
+          <router-link to="/projects" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-xl py-6 px-10 rounded-lg mr-4 transition duration-200">View Projects</router-link>
+          <router-link to="/contact" class="border border-indigo-600 text-indigo-400 hover:bg-indigo-600 hover:text-white font-medium text-xl py-6 px-10 rounded-lg transition duration-200">Contact Me</router-link>
         </div>
       </div>
 
@@ -72,7 +72,7 @@
       <!-- Skills Section -->
       <section id="skills" class="mb-16">
         <h2 class="text-3xl font-bold mb-8 text-center">Skills</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mx-auto">
           <div class="bg-slate-800/50 p-4 rounded-lg text-center">
             <div class="text-indigo-400 text-2xl mb-2">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
