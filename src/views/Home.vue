@@ -1,145 +1,287 @@
 <script setup>
-// You can import any components you need here
+import { ref, onMounted, computed } from 'vue';
+import { useUiStore } from '@/stores/uiStore';
+import ProjectCard from "@/components/ProjectCard.vue";
+import SkillCard from "@/components/SkillCard.vue";
+
+// State for controlling animations
+const commandText = ref('');
+const commandResult = ref('');
+const animationStage = ref(0);
+// 0: Initial state
+// 1: Command typing
+// 2: Command executed, showing result
+// 3: Hello World appearing
+// 4: Content fading in
+// 5: Animation completed
+
+// Development mode toggle - set to true to skip animations
+const devMode = ref(false);
+
+const showTerminal = computed(() => !devMode.value && animationStage.value < 5);
+const showHelloWorld = computed(() => !devMode.value && animationStage.value >= 3 && animationStage.value < 5);
+const showContent = computed(() => devMode.value || animationStage.value >= 4);
+const uiStore = useUiStore();
+
+// Keyboard shortcut to toggle dev mode
+const toggleDevMode = () => {
+  devMode.value = !devMode.value;
+  if (devMode.value) {
+    // Skip to the end state when enabling dev mode
+    animationStage.value = 5;
+    uiStore.setShowNavbar(true);
+  }
+};
+
+// Register keyboard shortcut (Ctrl+Shift+D)
+onMounted(() => {
+  window.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+      toggleDevMode();
+      e.preventDefault();
+    }
+  });
+  
+  // Check URL parameter for dev mode
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('dev') === 'true') {
+    devMode.value = true;
+  }
+  
+  // Initialize page
+  if (devMode.value) {
+    // Skip animation in dev mode
+    animationStage.value = 5;
+    uiStore.setShowNavbar(true);
+  } else {
+    // Start with navbar hidden and begin animation
+    uiStore.setShowNavbar(false);
+    startAnimation();
+  }
+});
+
+const startAnimation = async () => {
+  // Skip animation if in dev mode
+  if (devMode.value) {
+    animationStage.value = 5;
+    uiStore.setShowNavbar(true);
+    return;
+  }
+  
+  // Start typing command
+  animationStage.value = 1;
+  
+  const fullCommand = "> cd ~/portfolio && ./welcome.sh";
+  const typingSpeed = 50; // Faster typing (milliseconds per character)
+  
+  // Type command with faster speed
+  for (let i = 0; i < fullCommand.length; i++) {
+    commandText.value += fullCommand.charAt(i);
+    await new Promise(resolve => setTimeout(resolve, typingSpeed));
+  }
+  
+  // Short pause before execution
+  await new Promise(resolve => setTimeout(resolve, 300));
+  
+  // Show command result
+  animationStage.value = 2;
+  
+  // Type out the command result character by character
+  const result = "Loading personal portfolio...\nInitializing content...\nWelcome!";
+  for (let i = 0; i < result.length; i++) {
+    commandResult.value += result.charAt(i);
+    // Type result faster than the command
+    await new Promise(resolve => setTimeout(resolve, Math.random() * 20 + 10));
+  }
+  
+  // Short pause before showing Hello World
+  await new Promise(resolve => setTimeout(resolve, 400));
+  
+  // Show Hello World
+  animationStage.value = 3;
+  
+  // Show navbar with Hello World
+  uiStore.setShowNavbar(true);
+  
+  // Wait for Hello World to be visible for a moment
+  await new Promise(resolve => setTimeout(resolve, 1200));
+  
+  // Start fading in main content
+  animationStage.value = 4;
+  
+  // Complete animation and remove terminal after content has faded in
+  setTimeout(() => {
+    animationStage.value = 5;
+  }, 800); // This matches the duration of the content fade-in
+};
 </script>
 
 <template>
-  <div class="text-center min-h-screen bg-gradient-to-br from-slate-900 to-gray-800 text-white py-16 px-4 sm:px-6 lg:px-8">
+  <div class="min-h-screen text-white py-16 px-4 sm:px-6 lg:px-8 relative">
+    <!-- Dev mode indicator -->
+    <div v-if="devMode" class="fixed top-2 right-2 bg-yellow-600 text-white text-xs px-2 py-1 rounded-md z-50">
+      DEV MODE (Ctrl+Shift+D to toggle)
+    </div>
+    
+    <!-- Terminal with more sophisticated styling -->
+    <div v-if="showTerminal" 
+         class="fixed top-4 left-4 w-auto max-w-md bg-black/90 p-4 rounded-md font-mono text-sm text-green-400 shadow-lg border border-gray-700 z-20 transition-opacity duration-300"
+         :class="{'opacity-0': animationStage >= 3}">
+      <div class="flex items-center mb-1 border-b border-gray-700 pb-1">
+        <div class="flex space-x-1.5">
+          <div class="w-3 h-3 rounded-full bg-red-500"></div>
+          <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+          <div class="w-3 h-3 rounded-full bg-green-500"></div>
+        </div>
+        <div class="ml-2 text-gray-400 text-xs">terminal</div>
+      </div>
+      <div class="terminal-content">
+        <div>{{ commandText }}<span v-if="animationStage === 1" class="animate-pulse">▌</span></div>
+        <div v-if="animationStage >= 2" class="whitespace-pre-line">{{ commandResult }}<span v-if="animationStage === 2" class="animate-pulse">▌</span></div>
+      </div>
+    </div>
+    
     <div class="w-full mx-auto px-4">
-      <div class="mb-16 text-center">
-        <h2 class="text-center font-mono text-lg mb-4 text-indigo-400 animate-pulse drop-shadow-[0_0_0.3rem_#7c3aed]">
-          Hello World!
-        </h2>
-        <h1 class="text-5xl font-bold mb-4">Edward Zurakowski</h1>
-        <h3 class="text-2xl font-light text-gray-300 mb-8">Full Stack Tinkerer</h3>
+      <!-- Fixed position transition elements -->
+      <div class="relative min-h-[600px]">
+        <!-- "echo Hello World" transition animation -->
+        <div v-if="showHelloWorld"
+            class="absolute inset-0 flex items-center justify-center transition-all duration-800"
+            :class="[
+              animationStage >= 4 ? 'opacity-0 scale-110' : 'opacity-100 scale-100'
+            ]">
+          <h1 class="text-5xl font-bold text-red-400 drop-shadow-[0_0_0.3rem_#7c3aed] animate-pulse-slow">
+            > echo Hello World!
+          </h1>
+        </div>
 
-        <p class="text-lg text-gray-300 leading-relaxed mb-8 mx-auto">
-          I am an aspiring professional with an interest in Computer Science and Cybersecurity.
-          Currently I am a student in my senior year attending the University of Wisconsin-Whitewater.
-          I am pursuing a Bachelor's of Science in Computer Science with a minor in Cybersecurity.
-        </p>
+        <!-- Main content with fade-in animation -->
+        <div
+            v-if="showContent"
+            class="absolute inset-0 transition-all duration-800 transform"
+            :class="showContent && !devMode ? 'opacity-100 translate-y-0' : devMode ? 'opacity-100' : 'opacity-0 translate-y-4'"
+        >
+          <div class="text-center">
+            <!-- Hero Section -->
+            <h1 class="text-5xl font-bold pb-4 text-indigo-400 drop-shadow-[0_0_0.3rem_#7c3aed] animate-pulse-slow">
+              Hello World!
+            </h1>
+            <h1 class="text-5xl font-bold pb-4">Edward Zurakowski</h1>
+            <h3 class="text-2xl font-light text-gray-300 mb-8">Full Stack Tinkerer</h3>
 
-        <p class="text-lg text-gray-300 leading-relaxed mb-8 mx-auto">
-          I have a keen interest in coding software, and building tools to help achieve specific goals.
-          Also, I am an enthusiast for Open-Source and everything under its' umbrella.
-        </p>
+            <div class="pt-8 inline-flex gap-2">
+              <router-link to="/projects" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-xl py-6 px-10 rounded-lg mr-4 transition duration-200">View Projects</router-link>
+              <router-link to="/contact" class="border border-indigo-600 text-indigo-400 hover:bg-indigo-600 hover:text-white font-medium text-xl py-6 px-10 rounded-lg transition duration-200">Contact Me</router-link>
+            </div>
+          </div>
 
-        <div class="mt-8">
-          <router-link to="/projects" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-xl py-6 px-10 rounded-lg mr-4 transition duration-200">View Projects</router-link>
-          <router-link to="/contact" class="border border-indigo-600 text-indigo-400 hover:bg-indigo-600 hover:text-white font-medium text-xl py-6 px-10 rounded-lg transition duration-200">Contact Me</router-link>
+          <!-- About Me Section -->
+          <section class="text-center mx-auto pt-2 px-4">
+            <h2 class="text-3xl font-semibold mb-4 text-indigo-300 flex">About Me</h2>
+            <p class="text-gray-300 text-lg leading-relaxed">
+              I’m a passionate Computer Science student focused on cybersecurity and full-stack development. <br>
+              I love building tools, contributing to open-source projects, and learning by doing.
+            </p>
+            <router-link to="/about" class="inline-block mt-4 text-indigo-400 hover:text-white underline">
+              Learn more →
+            </router-link>
+          </section>
+
+          <!-- Projects Section -->
+          <section id="projects" class="pt-6 mb-16 px-4">
+            <h2 class="text-3xl font-bold pb-8 text-center text-indigo-300 flex">Projects</h2>
+            <div class="inline-flex gap-6">
+                <ProjectCard
+                    title="Portfolio Site"
+                    description="My personal site built with Vue and Tailwind."
+                    :tags="['Vue.js', 'TailwindCSS']"
+                    link="https://example.com"
+                />
+                <ProjectCard
+                    title="Cybersecurity Tool"
+                    description="A Python script that audits system security."
+                    :tags="['Python', 'Cybersecurity']"
+                    link="#"
+                />
+            </div>
+          </section>
+
+          <!-- Skills Section -->
+          <section id="skills" class="mb-16 px-4">
+            <h2 class="text-3xl font-bold mb-8 text-center text-indigo-300">Skills</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mx-auto">
+              <!-- Web Development -->
+              <SkillCard name="Web Development">
+                <template #icon>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M3 4a1 1 0 011-1h16a1 1 0 011 1v4H2V4zM2 9h20v11a1 1 0 01-1 1H3a1 1 0 01-1-1V9z" />
+                  </svg>
+                </template>
+              </SkillCard>
+
+              <!-- Cybersecurity -->
+              <SkillCard name="Cybersecurity">
+                <template #icon>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M12 11c1.657 0 3-1.343 3-3V5a3 3 0 10-6 0v3c0 1.657 1.343 3 3 3zM5 20h14a2 2 0 002-2v-5a9 9 0 00-18 0v5a2 2 0 002 2z" />
+                  </svg>
+                </template>
+              </SkillCard>
+            </div>
+          </section>
+
+
+          <!-- Final CTA -->
+          <section class="mt-24 px-4 text-center">
+            <h2 class="text-2xl font-semibold mb-4 text-indigo-300">Let’s Work Together</h2>
+            <p class="text-gray-300 text-lg mb-6">
+              Whether it’s a personal project, open-source idea, or just to connect — feel free to reach out.
+            </p>
+            <router-link to="/contact" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-xl py-4 px-8 rounded-lg transition duration-200">
+              Contact Me
+            </router-link>
+          </section>
         </div>
       </div>
-
-      <!-- Projects Section -->
-      <section id="projects" class="mb-16">
-        <h2 class="text-3xl font-bold mb-8 text-center">Projects</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Project Card 1 -->
-          <div class="bg-slate-800 rounded-lg overflow-hidden shadow-lg hover:shadow-indigo-500/20 transition duration-300">
-            <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">Project Name</h3>
-              <p class="text-gray-300 mb-4">Brief description of the project and the technologies used.</p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="bg-indigo-900/50 text-indigo-300 text-xs px-3 py-1 rounded-full">Vue.js</span>
-                <span class="bg-indigo-900/50 text-indigo-300 text-xs px-3 py-1 rounded-full">TailwindCSS</span>
-              </div>
-              <a href="#" class="text-indigo-400 hover:text-indigo-300 inline-flex items-center">
-                View Project <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-              </a>
-            </div>
-          </div>
-
-          <!-- Project Card 2 -->
-          <div class="bg-slate-800 rounded-lg overflow-hidden shadow-lg hover:shadow-indigo-500/20 transition duration-300">
-            <div class="p-6">
-              <h3 class="text-xl font-semibold mb-2">Project Name</h3>
-              <p class="text-gray-300 mb-4">Brief description of the project and the technologies used.</p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="bg-indigo-900/50 text-indigo-300 text-xs px-3 py-1 rounded-full">Python</span>
-                <span class="bg-indigo-900/50 text-indigo-300 text-xs px-3 py-1 rounded-full">Cybersecurity</span>
-              </div>
-              <a href="#" class="text-indigo-400 hover:text-indigo-300 inline-flex items-center">
-                View Project <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-              </svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Skills Section -->
-      <section id="skills" class="mb-16">
-        <h2 class="text-3xl font-bold mb-8 text-center">Skills</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mx-auto">
-          <div class="bg-slate-800/50 p-4 rounded-lg text-center">
-            <div class="text-indigo-400 text-2xl mb-2">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-              </svg>
-            </div>
-            <h3 class="font-medium">Web Development</h3>
-          </div>
-          <div class="bg-slate-800/50 p-4 rounded-lg text-center">
-            <div class="text-indigo-400 text-2xl mb-2">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-            </div>
-            <h3 class="font-medium">Cybersecurity</h3>
-          </div>
-          <div class="bg-slate-800/50 p-4 rounded-lg text-center">
-            <div class="text-indigo-400 text-2xl mb-2">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-            </div>
-            <h3 class="font-medium">Programming</h3>
-          </div>
-          <div class="bg-slate-800/50 p-4 rounded-lg text-center">
-            <div class="text-indigo-400 text-2xl mb-2">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-              </svg>
-            </div>
-            <h3 class="font-medium">Open Source</h3>
-          </div>
-        </div>
-      </section>
-
-      <!-- Contact Section -->
-      <section id="contact" class="mb-16">
-        <h2 class="text-3xl font-bold mb-8 text-center">Get In Touch</h2>
-        <div class="bg-slate-800/50 rounded-lg p-8 max-w-2xl mx-auto">
-          <div class="flex justify-center space-x-6 mb-8">
-            <a href="https://github.com/yourusername" class="text-gray-300 hover:text-indigo-400 transition">
-              <span class="sr-only">GitHub</span>
-              <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
-              </svg>
-            </a>
-            <a href="https://linkedin.com/in/yourusername" class="text-gray-300 hover:text-indigo-400 transition">
-              <span class="sr-only">LinkedIn</span>
-              <svg class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.454C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
-              </svg>
-            </a>
-            <a href="mailto:your.email@example.com" class="text-gray-300 hover:text-indigo-400 transition">
-              <span class="sr-only">Email</span>
-              <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-            </a>
-          </div>
-          <p class="text-center text-gray-300">Feel free to reach out for collaborations, questions, or just to say hello!</p>
-        </div>
-      </section>
-
-      <!-- Footer -->
-      <footer class="text-center text-gray-400 text-sm">
-        <p>© 2023 Edward Zurakowski. All rights reserved.</p>
-      </footer>
     </div>
   </div>
 </template>
+
+<style scoped>
+.terminal-content {
+  min-height: 60px;
+  line-height: 1.5;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 1rem #7c3aed;
+  }
+  50% {
+    opacity: 0.85;
+    text-shadow: 0 0 1.5rem #7c3aed;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 2s ease-in-out infinite;
+}
+</style>

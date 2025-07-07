@@ -23,6 +23,13 @@ export default defineComponent({
 </template>
 
 <style>
+html, body {
+  background-color: #0f172a; /* This is the slate-900 color */
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+}
+
 .page-enter-active,
 .page-leave-active {
   transition: opacity 0.3s, transform 0.3s;

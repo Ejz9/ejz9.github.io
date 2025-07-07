@@ -1,9 +1,10 @@
-<!-- src/components/NavBar.vue -->
 <script setup>
 import { ref, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
+import { useUiStore } from '@/stores/uiStore';
 
 const route = useRoute();
+const uiStore = useUiStore();
 const isMenuOpen = ref(false);
 const scrolled = ref(false);
 
@@ -25,21 +26,13 @@ watch(route, () => {
 </script>
 
 <template>
-  <nav :class="[
+  <nav v-if="uiStore.showNavbar" :class="[
     'fixed w-full z-10 transition-all duration-300',
     scrolled ? 'bg-slate-900/95 backdrop-blur-sm shadow-lg py-2' : 'bg-transparent py-4'
   ]">
+    <!-- Rest of your navbar code remains unchanged -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex justify-between items-center">
-        <!-- Logo
-        <router-link to="/" class="group flex items-center space-x-2">
-          <div class="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center transform group-hover:rotate-12 transition-all duration-300">
-            <span class="text-white font-bold">EZ</span>
-          </div>
-          <span class="text-white font-semibold tracking-wide">Edward<span class="text-indigo-400">Z</span></span>
-        </router-link>
-        -->
-
         <!-- Desktop menu with underline animations -->
         <div class="hidden md:flex items-center space-x-1">
           <router-link to="/" class="relative px-3 py-2 text-sm font-medium text-white hover:text-indigo-300 transition-colors duration-200">
@@ -77,17 +70,6 @@ watch(route, () => {
             ByteStash
           </a>
         </div>
-
-        <!-- Mobile menu button - only visible on mobile
-        <div class="md:hidden">
-          <button @click="toggleMenu" class="text-gray-300 hover:text-white focus:outline-none">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24">
-              <path v-if="!isMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-              <path v-else stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-          </button>
-        </div>
-        -->
       </div>
     </div>
 
@@ -102,16 +84,5 @@ watch(route, () => {
       </div>
     </div>
   </nav>
-  <div class="h-16"></div> <!-- Spacer -->
+  <div v-if="uiStore.showNavbar" class="h-16"></div> <!-- Spacer only shows when navbar is visible -->
 </template>
-
-<style scoped>
-@keyframes slideDown {
-  0% { transform: translateY(-10px); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
-}
-
-.animate-slideDown {
-  animation: slideDown 0.3s ease-out forwards;
-}
-</style>
