@@ -1,26 +1,35 @@
 <script>
+import { defineComponent } from 'vue';
+import { useUiStore } from '@/stores/uiStore';
 import NavBar from "@/components/NavBar.vue";
 import Footer from "@/components/Footer.vue";
-import {defineComponent} from "vue";
 
 export default defineComponent({
-  components: {NavBar, Footer}
-})
-
+  components: { NavBar, Footer },
+  setup() {
+    const uiStore = useUiStore();
+    return { uiStore };
+  }
+});
 </script>
 
 <!-- src/App.vue -->
 <template>
   <div class="flex flex-col min-h-screen">
-    <NavBar />
-    <router-view v-slot="{ Component }">
-      <transition name="page" mode="out-in">
-        <component :is="Component" />
-      </transition>
-      <Footer />
-    </router-view>
+    <NavBar v-if="uiStore.showNavbar" />
+
+    <main class="flex-grow">
+      <router-view v-slot="{ Component }">
+        <transition name="page" mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </router-view>
+    </main>
+
+    <Footer v-if="uiStore.showFooter" />
   </div>
 </template>
+
 
 <style>
 html, body {
@@ -41,6 +50,13 @@ html, body {
 .page-leave-to {
   opacity: 0;
   transform: translateY(-20px);
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.4s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
 }
 
 </style>

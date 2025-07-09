@@ -1,22 +1,2 @@
 @import "tailwindcss";
-@import './base.css'; /* custom overrides go AFTER Tailwind base */
-
-
-#app {
-  margin: 0 auto;
-  font-weight: normal;
-}
-
-a,
-.green {
-  text-decoration: none;
-  color: hsla(0, 89%, 71%, 1);
-  transition: 0.4s;
-  padding: 3px;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(0, 100%, 61%, 0.2);
-  }
-}
+@import './base.css';

@@ -1,5 +1,9 @@
 <!-- src/views/Skills.vue -->
 <script setup>
+import { useUiStore } from '@/stores/uiStore';
+const uiStore = useUiStore();
+uiStore.setShowNavbar(true)
+
 const skills = [
   { name: 'JavaScript', level: 90, category: 'Frontend' },
   { name: 'Vue.js', level: 85, category: 'Frontend' },
