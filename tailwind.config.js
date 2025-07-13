@@ -8,19 +8,22 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Light/dark color variables (semantic)
         background: 'var(--color-background)',
         'background-soft': 'var(--color-background-soft)',
         'background-mute': 'var(--color-background-mute)',
+
         border: 'var(--color-border)',
         'border-hover': 'var(--color-border-hover)',
+
         heading: 'var(--color-heading)',
         text: 'var(--color-text)',
-        'text-muted': 'var(--vt-c-text-light-2)',
+        accent: 'var(--color-accent)',
+        muted: 'var(--color-text-muted)',
+        highlight: 'var(--color-highlight)',
 
-        // Optional: mapped palette from your indigo accent and others
+        'text-muted': 'var(--vt-c-text-light-2)',
         'indigo-accent': '#7c3aed',
-        // Add more aliases if you use them a lot
+        coral: '#fb7185', // fallback raw if needed
       },
 
       fontSize: {

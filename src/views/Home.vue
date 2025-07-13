@@ -141,7 +141,7 @@ onMounted(() => {
 
     <!-- Terminal -->
     <div v-if="showTerminal"
-         class="fixed left-1/2 -translate-x-1/2 w-[90vw] sm:w-[500px] bg-black/95 p-6 rounded-lg font-mono text-sm text-green-400 shadow-2xl border border-green-500 z-50 transition duration-300 ease-in-out scale-100"
+         class="fixed left-1/2 -translate-x-1/2 w-[90vw] sm:w-[500px] bg-black/95 p-6 rounded-lg font-mono text-sm text-green-400 shadow-2xl border border-green-500 z-50 transition duration-300 ease-in-out scale-100 pointer-events-none"
          :class="{
        'invisible opacity-0': !terminalReady,
        'visible opacity-100': terminalReady && animationStage < 3,
@@ -150,7 +150,7 @@ onMounted(() => {
          style="top: 25vh">
       <!-- Terminal window -->
       <div
-          class="w-[90vw] sm:w-[500px] bg-black/95 p-6 rounded-lg font-mono text-sm text-green-400 shadow-2xl border border-green-500 transition-transform duration-500 ease-in-out animate-terminal-pulse pointer-events-auto"
+          class="w-[90vw] sm:w-[500px] bg-black/95 p-6 rounded-lg font-mono text-sm text-green-400 shadow-2xl border border-green-500 transition-transform duration-500 ease-in-out animate-terminal-pulse"
           :class="{ 'scale-105 opacity-0': animationStage >= 3, 'scale-100 opacity-100': animationStage < 3 }"
       >
         <div class="flex items-center mb-1 border-b border-border pb-1">
@@ -174,7 +174,8 @@ onMounted(() => {
       <div class="relative">
         <div v-if="showContent"
              :class="['transition-all duration-800 transform', contentAnimationClass]">
-          <div class="text-center">
+          <!-- Hero -->
+          <div id="hero" class="text-center">
             <!-- Hero section -->
             <h1 class="text-5xl font-bold pb-4 text-indigo-400 drop-shadow-[0_0_0.3rem_#7c3aed]">
               {{ typedTitle }}<span v-if="typedTitle.length < fullTypedTitle.length" class="animate-blink">▌</span>
@@ -186,14 +187,14 @@ onMounted(() => {
               <router-link to="/projects" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-xl py-4 px-8 rounded-lg transition duration-200">
                 View Projects
               </router-link>
-              <router-link to="/contact" class="border border-indigo-600 text-indigo-400 hover:bg-indigo-600 hover:text-white font-medium text-xl py-4 px-8 rounded-lg transition duration-200">
+              <router-link to="/contact" class="border border-indigo-400 text-indigo-400 hover:bg-indigo-600 hover:text-white font-medium text-xl py-4 px-8 rounded-lg transition duration-200">
                 Contact Me
               </router-link>
             </div>
           </div>
 
           <!-- About Me -->
-          <section class="mt-20 text-center">
+          <section id="aboutMe" class="mt-20 text-center">
             <h2 class="text-3xl font-semibold text-indigo-300 mb-4">About Me</h2>
             <p class="text-text-muted text-lg leading-relaxed">
               I’m a passionate Computer Science student focused on cybersecurity and full-stack development. <br>
@@ -205,8 +206,8 @@ onMounted(() => {
           </section>
 
           <!-- Projects -->
-          <section id="projects" class="mt-20">
-            <h2 class="text-3xl font-bold text-center text-indigo-300 mb-4">Projects</h2>
+          <section id="projects" class="mt-20 text-center">
+            <h2 class="text-3xl font-bold text-indigo-300 mb-4">Projects</h2>
             <div class="flex flex-wrap justify-center gap-6">
               <ProjectCard
                   title="My Portfolio"
@@ -247,12 +248,12 @@ onMounted(() => {
           </section>
 
           <!-- CTA -->
-          <section class="mt-24 text-center">
-            <h2 class="text-2xl font-semibold text-indigo-300 mb-2">Let’s Work Together</h2>
+          <section id="cta" class="mt-20 text-center">
+            <h2 class="text-2xl font-semibold text-indigo-300 mb-4">Let’s Work Together</h2>
             <p class="text-text-muted text-lg mb-4">
               Whether it’s a personal project, open-source idea, or just to connect — feel free to reach out.
             </p>
-            <router-link to="/contact" class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-xl py-4 px-10 rounded-lg transition duration-200">
+            <router-link to="/contact" class="inline-block mt-4 bg-indigo-600 hover:bg-indigo-700 text-white font-medium text-xl py-4 px-8 rounded-lg transition duration-200">
               Contact Me
             </router-link>
           </section>

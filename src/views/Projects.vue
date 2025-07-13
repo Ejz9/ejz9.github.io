@@ -4,6 +4,7 @@ import ProjectCard from "@/components/ProjectCard.vue";
 import { useUiStore } from '@/stores/uiStore';
 const uiStore = useUiStore();
 uiStore.setShowNavbar(true)
+uiStore.setShowFooter(true)
 
 import { useProjectStore } from '@/stores/projectStore'
 import { computed } from 'vue'
@@ -13,7 +14,7 @@ const projects = computed(() => projectStore.projects)
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-900 text-white py-16 px-4 sm:px-6 lg:px-8">
+  <div class="text-text bg-background py-16 px-4 sm:px-6 lg:px-8">
     <div class="max-w-6xl mx-auto">
       <h1 class="text-4xl font-bold mb-12 text-center">My Projects</h1>
 
@@ -37,8 +38,7 @@ const projects = computed(() => projectStore.projects)
             </div>
 
             <div class="flex space-x-4 mt-4">
-              <span class="text-indigo-400 hover:text-indigo-300">View Code</span>
-              <span v-if="project.demo" class="text-indigo-400 hover:text-indigo-300">Live Demo</span>
+              <span class="text-indigo-400 hover:text-indigo-300">View Project</span>
             </div>
           </div>
         </router-link>

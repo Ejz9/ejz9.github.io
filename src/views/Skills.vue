@@ -21,7 +21,7 @@ const skills = [
 </script>
 
 <template>
-  <div class="min-h-screen bg-white dark:bg-slate-900 py-16 px-4 sm:px-6 lg:px-8">
+  <div class="text-text bg-background py-16 px-4 sm:px-6 lg:px-8">
     <div class="max-w-4xl mx-auto">
       <h1 class="text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white">My Skills</h1>
 
