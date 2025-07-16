@@ -21,11 +21,20 @@
               route.path === '/projects' ? 'scale-x-100' : ''
             ]"></span>
           </router-link>
-          <router-link to="/skills" class="relative px-3 py-2 text-sm font-medium text-text hover:text-indigo-300 transition-colors duration-200">
-            Skills
+          <!--
+          <router-link to="/devlog" class="relative px-3 py-2 text-sm font-medium text-text hover:text-indigo-300 transition-colors duration-200">
+            Devlog
             <span :class="[
               'absolute bottom-0 left-0 w-full h-0.5 bg-indigo-500 transform scale-x-0 origin-left transition-transform duration-300',
-              route.path === '/skills' ? 'scale-x-100' : ''
+              route.path === '/devlog' ? 'scale-x-100' : ''
+            ]"></span>
+          </router-link>
+          -->
+          <router-link to="/resume" class="relative px-3 py-2 text-sm font-medium text-text hover:text-indigo-300 transition-colors duration-200">
+            Resume
+            <span :class="[
+              'absolute bottom-0 left-0 w-full h-0.5 bg-indigo-500 transform scale-x-0 origin-left transition-transform duration-300',
+              route.path === '/resume' ? 'scale-x-100' : ''
             ]"></span>
           </router-link>
           <router-link to="/about" class="relative px-3 py-2 text-sm font-medium text-text hover:text-indigo-300 transition-colors duration-200">
@@ -38,10 +47,9 @@
           <router-link to="/contact" class="ml-4 px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors duration-200">
             Contact
           </router-link>
-          <a href="https://bytes.ztree.dev/" class="ml-4 px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors duration-200">
+          <a href="https://bytes.ztree.dev/public/snippets" class="ml-4 px-4 py-2 text-sm font-medium text-white border border-indigo-600 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-colors duration-200">
             ByteStash
           </a>
-          <ThemeToggle />
         </div>
       </div>
     </div>
@@ -51,7 +59,6 @@
       <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-background-soft animate-slideDown">
         <router-link to="/" @click="isMenuOpen = false" class="block px-3 py-2 rounded-md text-base font-medium text-text hover:bg-background-mute">Home</router-link>
         <router-link to="/projects" @click="isMenuOpen = false" class="block px-3 py-2 rounded-md text-base font-medium text-text hover:bg-background-mute">Projects</router-link>
-        <router-link to="/skills" @click="isMenuOpen = false" class="block px-3 py-2 rounded-md text-base font-medium text-text hover:bg-background-mute">Skills</router-link>
         <router-link to="/about" @click="isMenuOpen = false" class="block px-3 py-2 rounded-md text-base font-medium text-text hover:bg-background-mute">About</router-link>
         <router-link to="/contact" @click="isMenuOpen = false" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700">Contact</router-link>
       </div>
@@ -64,7 +71,6 @@
 import { ref, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import { useUiStore } from '@/stores/uiStore';
-import ThemeToggle from "@/components/ThemeToggle.vue";
 
 const route = useRoute();
 const uiStore = useUiStore();

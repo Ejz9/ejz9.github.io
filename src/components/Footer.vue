@@ -14,8 +14,8 @@
         <div class="flex space-x-6">
           <ContactIcons :links="[
             { label: 'GitHub', href: 'https://github.com/ejz9', icon: GitHubIcon },
-            { label: 'LinkedIn', href: 'https://linkedin.com/in/edwardzurakowski', icon: LinkedInIcon },
-            { label: 'Email', href: 'mailto:your.email@example.com', icon: MailIcon }
+            { label: 'LinkedIn', href: 'https://linkedin.com/in/edward-zurakowski/', icon: LinkedInIcon },
+            { label: 'Email', href: 'mailto:contact@ztree.dev', icon: MailIcon }
           ]" />
         </div>
       </div>

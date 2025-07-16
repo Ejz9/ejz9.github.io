@@ -1,0 +1,230 @@
+{
+  "basics": {
+    "name": "Edward Zurakowski",
+    "headline": "Leadership Trained Problem Solving Developer",
+    "email": "contact@ztree.dev",
+    "url": {
+      "label": "",
+      "href": ""
+    },
+    "customFields": []
+  },
+  "sections": {
+    "awards": {
+      "name": "Awards",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "awards",
+      "items": [
+        {
+          "id": "jgbx6x2nccqlzdaco1827zzh",
+          "visible": true,
+          "title": "Eagle Scout",
+          "awarder": "Boy Scouts of America",
+          "date": "September 2020",
+          "summary": "",
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        }
+      ]
+    },
+    "certifications": {
+      "name": "Certifications",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "certifications",
+      "items": [
+        {
+          "id": "l3n6yko59fs55mxz7l1tn7fe",
+          "visible": true,
+          "name": "Word (Office 2019)",
+          "issuer": "Microsoft",
+          "date": "January 2021",
+          "summary": "",
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        },
+        {
+          "id": "r0mlj0fhfkhaia1ia7qowq9x",
+          "visible": true,
+          "name": "Excel (Office 2019)",
+          "issuer": "Microsoft",
+          "date": "February 2021",
+          "summary": "",
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        },
+        {
+          "id": "f2ygkeezw2at44k5q2m0x9ok",
+          "visible": true,
+          "name": "PowerPoint (Office 2019)",
+          "issuer": "Microsoft",
+          "date": "March 2021",
+          "summary": "",
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        }
+      ]
+    },
+    "education": {
+      "name": "Education",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "education",
+      "items": [
+        {
+          "id": "nwbt2vesgsanzvitr9vpizoh",
+          "visible": true,
+          "institution": "University of Wisconsin-Whitewater",
+          "studyType": "Computer Science",
+          "area": "Bachelor of Science",
+          "score": "",
+          "date": "December 2025",
+          "summary": "<p></p>",
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        }
+      ]
+    },
+    "experience": {
+      "name": "Experience",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "experience",
+      "items": [
+        {
+          "id": "jnyzcwt80zjpzaqv8ntfmort",
+          "visible": true,
+          "company": "Noodles & Company",
+          "position": "Team Member",
+          "location": "",
+          "date": "August 2020 - Present",
+          "summary": [
+            "Provide front-line customer service, ensuring an efficient ordering process with Aloha POS in a fast-paced environment.",
+            "Resolve customer issues by applying problem-solving skills and maintaining service standards.",
+            "Train and mentor new employees, enhancing team productivity.",
+            "Manage order processing and workflow to ensure accurate fulfillment under high-pressure conditions."
+          ],
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        }
+      ]
+    },
+    "profiles": {
+      "name": "Profiles",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "profiles",
+      "items": [
+        {
+          "id": "eghcg6r4ysbrwelg0ckdrd2z",
+          "visible": true,
+          "network": "LinkedIn",
+          "username": "Edward Zurakowski",
+          "icon": "linkedin",
+          "url": {
+            "label": "",
+            "href": "https://www.linkedin.com/in/edward-zurakowski/"
+          }
+        },
+        {
+          "id": "rqyjsik8aaukhej403k9mrrn",
+          "visible": true,
+          "network": "GitHub",
+          "username": "Ejz9",
+          "icon": "github",
+          "url": {
+            "label": "",
+            "href": "https://github.com/Ejz9"
+          }
+        }
+      ]
+    },
+    "projects": {
+      "name": "Projects",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "projects",
+      "items": [
+        {
+          "id": "o9xc7rxxtpbge00e0q7arc5r",
+          "visible": true,
+          "name": "HomeServer",
+          "description": "Established and currently manage a home server",
+          "date": "2023 - Present",
+          "summary": [
+            "Manage 50TB of data storage, with incremental backups using Kopia to ensure data protection.",
+            "Maintain 99% uptime as monitored by Uptime Kuma, with periodic backup integrity tests.",
+            "Secure access with SSH public key authentication and Tailscale VPN, eliminating exposure to public networks.",
+            "Harden security with Nginx reverse proxy, Cloudflare-protected services, Fail2Ban, and CrowdSec, reducing attack surface."
+          ],
+          "keywords": [],
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        }
+      ]
+    },
+    "skills": {
+      "name": "Skills",
+      "columns": 1,
+      "separateLinks": true,
+      "visible": true,
+      "id": "skills",
+      "items": [
+        {
+          "id": "gkdtzo2nx8x7tqafqezv6zlz",
+          "visible": true,
+          "name": "Languages & Frameworks",
+          "description": "Java, JavaScript, Python, HTML, CSS, SQL, Vue.js",
+          "level": 0,
+          "keywords": []
+        },
+        {
+          "id": "h5lzbyikfr6u4h76eyxy0kfu",
+          "visible": true,
+          "name": "Tools & Technologies",
+          "description": "Docker, Git, Woodpecker CI, Linux, REST APIs",
+          "level": 0,
+          "keywords": []
+        },
+        {
+          "id": "dpknhh1xzdbrucirtditqxqc",
+          "visible": true,
+          "name": "Networking & Security",
+          "description": "Network Security, TCP/IP, Firewall Configuration, VPNs",
+          "level": 0,
+          "keywords": []
+        },
+        {
+          "id": "d4gow06eleyim2gk62ti30z8",
+          "visible": true,
+          "name": "Other",
+          "description": "CI/CD, Agile Development, Version Control, Debugging & Troubleshooting, Databases",
+          "level": 0,
+          "keywords": []
+        }
+      ]
+    },
+    "custom": {}
+  }
+}

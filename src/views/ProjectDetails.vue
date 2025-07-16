@@ -27,7 +27,8 @@ const project = computed(() => projectStore.selectedProject)
 
       <img :src="project.image" class="w-full h-64 object-cover rounded-lg mb-6" alt="project image" />
 
-      <p class="text-lg text-gray-300 mb-4">{{ project.description }}</p>
+      <h3 class="text-lg text-gray-300 mb-4">{{ project.heading }}</h3>
+      <p class="text-gray-300 mb-4">{{ project.description }}</p>
 
       <div class="flex flex-wrap mb-6">
         <span v-for="tech in project.technologies" :key="tech"

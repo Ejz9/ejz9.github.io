@@ -1,6 +1,5 @@
 <!-- src/views/Projects.vue -->
 <script setup>
-import ProjectCard from "@/components/ProjectCard.vue";
 import { useUiStore } from '@/stores/uiStore';
 const uiStore = useUiStore();
 uiStore.setShowNavbar(true)
@@ -28,7 +27,7 @@ const projects = computed(() => projectStore.projects)
           <img :src="project.image" :alt="project.title" class="w-full h-48 object-cover">
           <div class="p-6">
             <h3 class="text-xl font-bold mb-3 text-indigo-400">{{ project.title }}</h3>
-            <p class="text-gray-300 mb-4">{{ project.description }}</p>
+            <p class="text-gray-300 mb-4">{{ project.heading }}</p>
 
             <div class="flex flex-wrap mb-4">
               <span v-for="tech in project.technologies" :key="tech"

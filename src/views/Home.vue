@@ -2,7 +2,6 @@
 import {ref, onMounted, computed, watchEffect, nextTick} from 'vue';
 import { useUiStore } from '@/stores/uiStore';
 import ProjectCard from "@/components/ProjectCard.vue";
-import SkillCard from "@/components/SkillCard.vue";
 
 // UI state
 const uiStore = useUiStore();
@@ -174,7 +173,6 @@ onMounted(() => {
       <div class="relative">
         <div v-if="showContent"
              :class="['transition-all duration-800 transform', contentAnimationClass]">
-          <!-- Hero -->
           <div id="hero" class="text-center">
             <!-- Hero section -->
             <h1 class="text-5xl font-bold pb-4 text-indigo-400 drop-shadow-[0_0_0.3rem_#7c3aed]">
@@ -224,7 +222,7 @@ onMounted(() => {
             </div>
           </section>
 
-          <!-- Skills -->
+          <!-- Skills
           <section id="skills" class="mt-20">
             <h2 class="text-3xl font-bold text-center text-indigo-300 mb-4">Skills</h2>
             <div class="flex flex-wrap justify-center gap-6">
@@ -246,6 +244,7 @@ onMounted(() => {
               </SkillCard>
             </div>
           </section>
+          -->
 
           <!-- CTA -->
           <section id="cta" class="mt-20 text-center">

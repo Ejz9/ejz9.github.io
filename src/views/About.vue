@@ -1,26 +1,18 @@
-<!-- src/views/About.vue -->
 <script setup>
-const experiences = [
-  {
-    title: 'Computer Science Student',
-    organization: 'University of Wisconsin-Whitewater',
-    period: 'Expected Graduation: May 2024',
-    description: 'Pursuing a Bachelor\'s of Science in Computer Science with a minor in Cybersecurity.',
-    type: 'education'
-  },
-  // Add more education/experience items as needed
-  {
-    title: 'Sample Work Experience',
-    organization: 'Company Name',
-    period: 'June 2023 - Present',
-    description: 'Description of your responsibilities and achievements in this role.',
-    type: 'work'
-  },
-];
+
+import {useUiStore} from "@/stores/uiStore.js";
+import {useAboutStore} from "@/stores/aboutStore.js";
+
+const uiStore = useUiStore();
+uiStore.setShowNavbar(true)
+uiStore.setShowFooter(true)
+
+const aboutStore = useAboutStore()
+const experiences = aboutStore.experiences
 </script>
 
 <template>
-  <div class="min-h-screen bg-slate-900 py-16 px-4 sm:px-6 lg:px-8">
+  <div class="text-text bg-background py-16 px-4 sm:px-6 lg:px-8">
     <div class="max-w-4xl mx-auto">
       <h1 class="text-4xl font-bold text-center mb-4 text-white">About Me</h1>
       <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">
@@ -33,10 +25,10 @@ const experiences = [
         <div class="bg-slate-800 rounded-lg shadow-md p-6 text-gray-300 leading-relaxed">
           <p class="mb-4">
             I'm a passionate computer science student with a strong interest in building software that solves real-world problems.
-            My journey into technology began when I was young, and I've been fascinated by how code can create powerful tools and experiences ever since.
+            My journey into technology began when I was younger, playing video games, and I've been fascinated by how code can create powerful tools and experiences ever since.
           </p>
           <p>
-            When I'm not coding, you might find me exploring open-source projects, learning about cybersecurity, or tinkering with new technologies.
+            When I'm not coding, you might find me exploring open-source projects, playing video games with friends, or tinkering with new technologies.
             I believe in continuous learning and pushing my boundaries to grow both personally and professionally.
           </p>
         </div>
