@@ -15,7 +15,7 @@ export const useAboutStore = defineStore('about', {
             organization: 'Noodles & Company',
             period: 'August 2020 - Present',
             description: 'As a team member at noodles and company I am responsible for various shift positions having completed all around training. ' +
-                'These rotate from providing guest services, preparing product and bagging orders, and cooking the food for guests. I also help train new team members.',
+                'These rotate from providing guest services, preparing product, bagging orders, and cooking the food for guests. I also help train new team members.',
             type: 'work'
         },
     ],
