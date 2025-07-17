@@ -6,6 +6,7 @@ import Contact from "@/views/Contact.vue";
 import ProjectDetails from "@/views/ProjectDetails.vue";
 import Devlog from "@/views/Devlog.vue";
 import Resume from "@/views/Resume.vue";
+import ThankYou from "@/views/ThankYou.vue";
 
 const routes = [
     { path: '/', name: 'Home', component: Home },
@@ -15,6 +16,8 @@ const routes = [
     { path: '/contact', name: 'Contact', component: Contact},
     { path: '/devlog', name: 'Devlog', component: Devlog},
     { path: '/resume', name: 'Resume', component: Resume},
+    { path: '/:pathMatch(.*)*', redirect: '/' },
+    { path: '/thank-you', name: 'ThankYou', component: ThankYou },
 ]
 
 export default createRouter({

@@ -15,35 +15,10 @@ const isSubmitting = ref(false);
 const submitSuccess = ref(false);
 const submitError = ref(false);
 
-const submitForm = async () => {
-  isSubmitting.value = true;
-
-  try {
-    const response = await fetch("https://formsubmit.co/contact@ztree.dev", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      },
-      body: JSON.stringify(formData.value)
-    })
-
-    if (response.ok) {
-      submitSuccess.value = true;
-      formData.value = { name: '', email: '', message: '' };
-    } else {
-      submitError.value = true;
-    }
-  } catch (error) {
-    submitError.value = true;
-  } finally {
-    isSubmitting.value = false;
-  }
-};
 </script>
 
 <template>
-  <div class="min-h-screen bg-white dark:bg-slate-900 py-16 px-4 sm:px-6 lg:px-8">
+  <div class="text-text bg-background py-16 px-4 sm:px-6 lg:px-8">
     <div class="max-w-4xl mx-auto">
       <h1 class="text-4xl font-bold text-center mb-12 text-gray-900 dark:text-white">Get In Touch</h1>
 
@@ -63,23 +38,25 @@ const submitForm = async () => {
           </div>
         </div>
 
-        <form v-else @submit.prevent="submitForm" class="space-y-6">
+        <form v-else action="https://formsubmit.co/2578e0bf107458213b1057fc8c9700ab" method="POST" class="space-y-6" @submit="isSubmitting = true">
           <input type="text" name="_honey" style="display: none" tabindex="-1" autocomplete="off" >
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://ztree.dev/thank-you">
           <div>
             <label for="name" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Name</label>
-            <input v-model="formData.name" type="text" id="name" required
+            <input v-model="formData.name" type="text" id="name" name="name" required
                    class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 shadow-sm py-2 px-3 bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-indigo-500 focus:border-indigo-500">
           </div>
 
           <div>
             <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Email</label>
-            <input v-model="formData.email" type="email" id="email" required
+            <input v-model="formData.email" type="email" id="email" name="email" required
                    class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 shadow-sm py-2 px-3 bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-indigo-500 focus:border-indigo-500">
           </div>
 
           <div>
             <label for="message" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Message</label>
-            <textarea v-model="formData.message" id="message" rows="5" required
+            <textarea v-model="formData.message" id="message" rows="5" name="message" required
                       class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 shadow-sm py-2 px-3 bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-indigo-500 focus:border-indigo-500"></textarea>
           </div>
 
