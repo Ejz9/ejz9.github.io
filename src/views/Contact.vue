@@ -19,7 +19,7 @@ const submitForm = async () => {
   isSubmitting.value = true;
 
   try {
-    const response = await fetch("https://formsubmit.co/contact@ztree.dev", {
+    const response = await fetch("https://formsubmit.co/2578e0bf107458213b1057fc8c9700ab", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
