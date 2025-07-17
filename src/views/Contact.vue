@@ -83,7 +83,16 @@ const submitForm = async () => {
                       class="mt-1 block w-full rounded-md border-gray-300 dark:border-gray-700 shadow-sm py-2 px-3 bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:ring-indigo-500 focus:border-indigo-500"></textarea>
           </div>
 
-          <div class="flex justify-end">
+          <div class="flex justify-end items-center space-x-4 mt-4">
+            <!-- VPN Warning -->
+            <div v-if="!isSubmitting" class="text-xs text-yellow-500 flex items-center space-x-1">
+              <svg
+                  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-triangle-alert-icon lucide-triangle-alert"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/>
+              </svg>
+              <span>May fail with VPN or privacy tools</span>
+            </div>
+
+            <!-- Submit Button -->
             <button type="submit" :disabled="isSubmitting"
                     class="bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-6 rounded-md shadow-md hover:shadow-lg transition-all duration-200 flex items-center">
               <svg v-if="isSubmitting" class="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" width="24" height="24">
@@ -94,7 +103,8 @@ const submitForm = async () => {
             </button>
           </div>
 
-          <div v-if="submitError" class="text-red-600 dark:text-red-400 text-center">
+          <!-- Error Message -->
+          <div v-if="submitError" class="text-red-600 dark:text-red-400 text-center mt-2">
             There was an error sending your message. Please try again.
           </div>
         </form>
