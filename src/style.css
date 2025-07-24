@@ -1,0 +1,171 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+/* Base theme using CSS-first approach */
+
+@layer base {
+    :root {
+        --color-bg: oklch(0.141 0.005 285.823);            /* zinc-900 OLD: #18181b*/
+        --color-text: #f4f4f5;          /* zinc-100 */
+        --color-accent: #3b82f6;        /* blue-500 */
+        --color-accent-hover: #2563eb;  /* blue-600 */
+        --color-highlight: #60a5fa;     /* blue-400 */
+        --color-highlight-hover: #3b82f6;
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            /* Light mode */
+            --color-bg: #fafafa;              /* light zinc background */
+            --color-text: #18181b;            /* dark text */
+
+            --color-accent: #3b82f6;          /* blue-500 */
+            --color-accent-hover: #2563eb;    /* blue-600 */
+            --color-highlight: #60a5fa;       /* blue-400 */
+            --color-highlight-hover: #3b82f6;
+        }
+    }
+
+    body {
+        background-color: var(--color-bg);
+        color: var(--color-text);
+    }
+}
+
+@theme {
+    --color-coral-red: #fb7185;
+    --color-coral-red-dark: #f43f5e;
+    --color-coral-gradient: linear-gradient(to right, var(--color-accent), var(--color-highlight));
+}
+
+@layer utilities {
+    /* Semantic text and backgrounds */
+    .text-text {
+        color: var(--color-text);
+    }
+
+    .text-text-muted {
+        color: color-mix(in srgb, var(--color-text) 60%, transparent);
+    }
+
+    .text-accent {
+        color: var(--color-accent);
+    }
+
+    .text-accent-hover:hover {
+        color: var(--color-accent-hover);
+    }
+
+    .bg-bg {
+        background-color: var(--color-bg);
+    }
+
+    .bg-accent {
+        background-color: var(--color-accent);
+    }
+
+    .bg-accent-hover:hover {
+        background-color: var(--color-accent-hover);
+    }
+
+    .btn {
+        @apply inline-flex items-center justify-center px-8 py-4 rounded-lg text-lg font-medium transition-colors duration-200;
+    }
+
+    .nav-btn {
+        @apply items-center justify-center px-4 py-2 rounded-lg font-medium transition-colors duration-200;
+    }
+
+    /* Primary: Coral background */
+    .btn-primary {
+        background-color: var(--color-accent);
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: var(--color-accent-hover);
+    }
+
+    /* Secondary: Coral outline */
+    .btn-outline {
+        border: 2px solid var(--color-accent);
+        color: var(--color-accent);
+        background-color: transparent;
+    }
+
+    .btn-outline:hover {
+        background-color: var(--color-accent);
+        color: white;
+    }
+
+    /* Optional subtle highlight class */
+    .text-highlight {
+        color: var(--color-highlight);
+    }
+
+    .underline-highlight {
+        border-bottom: 2px solid var(--color-highlight);
+    }
+
+    .hover-amber-underline::after {
+        content: '';
+        @apply absolute bottom-0 left-0 w-full h-0.5 scale-x-0 origin-left transition-transform duration-300;
+        background-color: var(--color-highlight);
+    }
+
+    .hover-amber-underline:hover::after {
+        transform: scaleX(1);
+    }
+
+    /* Hover underline (like nav links) */
+    .hover-underline {
+        @apply relative;
+    }
+
+    .hover-underline::after {
+        content: '';
+        @apply absolute bottom-0 left-0 h-0.5 w-full scale-x-0 origin-left transition-transform duration-300;
+        background-color: var(--color-accent);
+    }
+
+    .hover-underline:hover::after {
+        transform: scaleX(1);
+    }
+
+    /* Gradient Text */
+    .text-gradient {
+        background: linear-gradient(to right, var(--color-accent), var(--color-highlight));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* Gradient Background (e.g. hero section) */
+    .bg-gradient-accent {
+        background-image: linear-gradient(to right, var(--color-accent), var(--color-highlight));
+    }
+
+    .blinking-cursor {
+        color: var(--color-text); /* or a fixed color like var(--color-text) */
+        animation: blink 1s step-start infinite;
+        margin-left: 0.25rem;
+    }
+
+    @keyframes blink {
+        0%, 50%, 100% { opacity: 1; }
+        25%, 75% { opacity: 0; }
+    }
+
+    .card-glass {
+        background-color: rgba(255, 255, 255, 0.1); /* white-tinted glass */
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 1rem;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .text-destructive {
+        color: oklch(60% 0.2 25); /* red-ish in OKLCH space */
+    }
+}
