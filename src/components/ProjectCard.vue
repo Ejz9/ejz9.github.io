@@ -18,7 +18,8 @@ bg-white/10 dark:bg-zinc-900/50 shadow-lg hover:shadow-indigo-500/20 backdrop-bl
     </div>
     <div class="flex flex-wrap gap-2 mb-4 text-center px-6">
       <span v-if="tags" v-for="tag in tags.slice(0,4)" class="bg-accent text-text text-xs px-3 py-1 rounded-full">{{ tag }}</span>
-      <span v-if="technologies" v-for="(tech, index) in technologies" :key="index" class="bg-accent text-text text-xs px-2 py-1 rounded">{{ tech }}</span>
+      <span v-if="technologies" v-for="tech in technologies.slice(0,4)" class="bg-accent text-text text-xs px-2 py-1 rounded">{{ tech }}</span>
+      <span v-if="technologies.length > 4" class="bg-accent text-text text-xs px-2 py-1 rounded">+{{ technologies.length - 4 }}</span>
     </div>
     <div>
       <router-link :to="`/projects/${link}`" class="btn items-center">
