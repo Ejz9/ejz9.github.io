@@ -134,7 +134,7 @@ onMounted(async () => {
             :key="project.id"
             :title="project.name"
             :description="project.heading"
-            :tags="project.technologies"
+            :technologies="project.technologies"
             :link="project.id"
         />
       </div>
