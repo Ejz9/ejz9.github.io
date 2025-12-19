@@ -28,7 +28,7 @@ export const useProjectStore = defineStore('projectStore', {
             name: 'My Portfolio',
             heading: 'My personal portfolio website.',
             description: ['This site is a portfolio showcasing my work and skills. It is built with Vue and TailwindCSS. It is meant to be the central hub of all things regarding me and my professional career. It\'s also a passion project and a blog for what I\'m up to in my life.'],
-            image: '/portfolio.png',
+            image: '/portfolio-updated.png',
             technologies: ['Vite', 'Vue.js', 'TailwindCSS', 'Pinia'],
             code: 'https://github.com/Ejz9/ejz9.github.io',
             demo: 'https://ztree.dev',
