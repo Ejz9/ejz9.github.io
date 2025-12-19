@@ -1,5 +1,5 @@
 <script setup>
-import {ref, computed, onMounted, onBeforeUnmount, watch, nextTick} from 'vue'
+import {ref, onMounted, onBeforeUnmount, watch, nextTick} from 'vue'
 import { useRoute } from 'vue-router'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
