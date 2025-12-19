@@ -1,7 +1,7 @@
 {
   "basics": {
     "name": "Edward Zurakowski",
-    "headline": "Leadership Trained Problem Solving Developer",
+    "headline": "Full Stack Developer & Cybersecurity Enthusiast",
     "email": "contact@ztree.dev",
     "url": {
       "label": "",
@@ -31,51 +31,6 @@
         }
       ]
     },
-    "certifications": {
-      "name": "Certifications",
-      "columns": 1,
-      "separateLinks": true,
-      "visible": true,
-      "id": "certifications",
-      "items": [
-        {
-          "id": "l3n6yko59fs55mxz7l1tn7fe",
-          "visible": true,
-          "name": "Word (Office 2019)",
-          "issuer": "Microsoft",
-          "date": "January 2021",
-          "summary": "",
-          "url": {
-            "label": "",
-            "href": ""
-          }
-        },
-        {
-          "id": "r0mlj0fhfkhaia1ia7qowq9x",
-          "visible": true,
-          "name": "Excel (Office 2019)",
-          "issuer": "Microsoft",
-          "date": "February 2021",
-          "summary": "",
-          "url": {
-            "label": "",
-            "href": ""
-          }
-        },
-        {
-          "id": "f2ygkeezw2at44k5q2m0x9ok",
-          "visible": true,
-          "name": "PowerPoint (Office 2019)",
-          "issuer": "Microsoft",
-          "date": "March 2021",
-          "summary": "",
-          "url": {
-            "label": "",
-            "href": ""
-          }
-        }
-      ]
-    },
     "education": {
       "name": "Education",
       "columns": 1,
@@ -84,14 +39,36 @@
       "id": "education",
       "items": [
         {
+          "id": "o7ncuyvv6dsumu1sv16h3hex",
+          "visible": true,
+          "institution": "University of Wisconsin-Whitewater",
+          "studyType": "",
+          "area": "Master of Science in Computer Science (Cybersecurity Engineering Emphasis)",
+          "score": "",
+          "date": "May 2027",
+          "summary": [
+            "System & Software Security",
+            "Cloud Computing"
+          ],
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        },
+        {
           "id": "nwbt2vesgsanzvitr9vpizoh",
           "visible": true,
           "institution": "University of Wisconsin-Whitewater",
-          "studyType": "Computer Science",
-          "area": "Bachelor of Science",
+          "studyType": "",
+          "area": "Bachelor of Science in Computer Science (Minor in Cybersecurity)",
           "score": "",
           "date": "December 2025",
-          "summary": "<p></p>",
+          "summary": [
+            "Cryptography & Network Security",
+            "Data Structures & Algorithms",
+            "Database Management Systems",
+            "Software Engineering"
+          ],
           "url": {
             "label": "",
             "href": ""
@@ -114,8 +91,6 @@
           "location": "",
           "date": "August 2020 - Present",
           "summary": [
-            "Provide front-line customer service, ensuring an efficient ordering process with Aloha POS in a fast-paced environment.",
-            "Resolve customer issues by applying problem-solving skills and maintaining service standards.",
             "Train and mentor new employees, enhancing team productivity.",
             "Manage order processing and workflow to ensure accurate fulfillment under high-pressure conditions."
           ],
@@ -165,16 +140,49 @@
       "id": "projects",
       "items": [
         {
+          "id": "vbivq887lwogn2e9knbotur2",
+          "visible": true,
+          "name": "Ember - Cloud-Native Code Snippet Manager",
+          "description": "TypeScript, Nuxt 4, MongoDB, Docker, Bun",
+          "date": "December 2025",
+          "summary": [
+            "Architected a full-stack snippet platform using Nuxt, TypeScript, BetterAuth, and TailwindCSS.",
+            "Built a comprehensive Admin Dashboard with real-time analytics, including audit logging to track user activity.",
+            "Containerized the application with Docker and established an automated CI/CD pipeline using Woodpecker CI."
+          ],
+          "keywords": [],
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        },
+        {
+          "id": "yykhfyr4ro837hubhz2le8w3",
+          "visible": true,
+          "name": "Dota 2 Statistics Tool",
+          "description": "Vue.js, JavaScript, Express, Node.js, Vite, REST APIs, MongoDB",
+          "date": "May 2025",
+          "summary": [
+            "Collaborated in a 5-person team using Agile and Scrum methodologies to build a stat-tracking application.",
+            "Integrated with the OpenDota API to fetch and process real-time player data.",
+            "Designed and optimized Mongoose schemas to store match history and player metrics efficiently."
+
+          ],
+          "keywords": [],
+          "url": {
+            "label": "",
+            "href": ""
+          }
+        },
+        {
           "id": "o9xc7rxxtpbge00e0q7arc5r",
           "visible": true,
           "name": "HomeServer",
-          "description": "Established and currently manage a home server",
+          "description": "",
           "date": "2023 - Present",
           "summary": [
-            "Manage 50TB of data storage, with incremental backups using Kopia to ensure data protection.",
-            "Maintain 99% uptime as monitored by Uptime Kuma, with periodic backup integrity tests.",
-            "Secure access with SSH public key authentication and Tailscale VPN, eliminating exposure to public networks.",
-            "Harden security with Nginx reverse proxy, Cloudflare-protected services, Fail2Ban, and CrowdSec, reducing attack surface."
+            "Manage 50TB of data storage with automated Kopia backups for data resilience and integrity.",
+            "Hardened network via Tailscale VPN, SSH, Nginx, and CrowdSec to control public exposure."
           ],
           "keywords": [],
           "url": {
@@ -195,7 +203,7 @@
           "id": "gkdtzo2nx8x7tqafqezv6zlz",
           "visible": true,
           "name": "Languages & Frameworks",
-          "description": "Java, JavaScript, Python, HTML, CSS, SQL, Vue.js",
+          "description": "Java, JavaScript, TypeScript, Python, HTML, Tailwind CSS, SQL, Vue.js, Nuxt",
           "level": 0,
           "keywords": []
         },
@@ -203,7 +211,7 @@
           "id": "h5lzbyikfr6u4h76eyxy0kfu",
           "visible": true,
           "name": "Tools & Technologies",
-          "description": "Docker, Git, Woodpecker CI, Linux, REST APIs",
+          "description": "Docker, Git, Woodpecker CI, Linux, REST APIs, Azure, MongoDB",
           "level": 0,
           "keywords": []
         },
@@ -212,14 +220,6 @@
           "visible": true,
           "name": "Networking & Security",
           "description": "Network Security, TCP/IP, Firewall Configuration, VPNs",
-          "level": 0,
-          "keywords": []
-        },
-        {
-          "id": "d4gow06eleyim2gk62ti30z8",
-          "visible": true,
-          "name": "Other",
-          "description": "CI/CD, Agile Development, Version Control, Debugging & Troubleshooting, Databases",
           "level": 0,
           "keywords": []
         }

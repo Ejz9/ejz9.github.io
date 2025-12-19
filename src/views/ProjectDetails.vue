@@ -1,8 +1,9 @@
 <script setup lang="ts">
 
 import {computed, onMounted} from "vue";
-import { useProjectStore } from "../stores/projectStore";
+import { useProjectStore } from "@/stores/projectStore";
 import {useRoute} from "vue-router";
+import Carousel from "@/components/Carousel.vue";
 const projectStore = useProjectStore()
 
 const route = useRoute()
@@ -19,10 +20,12 @@ const project = computed(() => projectStore.selectedProject)
   <div class="block p-6 text-text">
     <h1 class="text-4xl font-bold mb-6">{{ project.name }}</h1>
 
-    <img :src="project.image" class="w-full h-64 object-cover rounded-lg mb-6" alt="Project Image">
+    <img v-if="project.image" :src="project.image" class="w-full h-64 object-cover rounded-lg mb-6" alt="Project Image">
+    <Carousel v-if="project.images" :images="project.images" />
+
 
     <h3 class="text-lg font-semibold mb-4">{{ project.heading }}</h3>
-    <p class="mb-4">{{ project.description }}</p>
+    <p class="mb-4" v-for="(paragraph, index) in project.description" :key="index">{{ paragraph }}</p>
 
     <div>
     <span  v-for="tech in project.technologies" :key="tech" class="inline-flex bg-accent text-text text-sm px-3 py-1 rounded mr-2 mb-2">

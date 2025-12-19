@@ -18,7 +18,7 @@ onMounted(async() => {
       <div class="flex items-center justify-between mb-2 flex-wrap gap-2">
         <h1 class="text-4xl font-bold mb-2">{{ resume.basics.name }}</h1>
         <Button as="a"
-                href="/edward-resume-public.pdf"
+                href="/github-redacted.pdf"
                 download
                 variant="outline"
                 class="btn-outline"
@@ -51,9 +51,18 @@ onMounted(async() => {
       <!-- Education -->
       <section class="mb-8">
         <h2 class="text-2xl font-semibold mb-2">Education</h2>
-        <div v-for="edu in resume.sections.education.items" :key="edu.id">
+        <div v-for="edu in resume.sections.education.items" :key="edu.id" class="mb-4 border-b border-border pb-4 last:border-b-0">
           <p class="font-medium">{{ edu.institution }}</p>
-          <p class="text-sm text-text-muted">{{ edu.studyType }}, {{ edu.area }} – {{ edu.date }}</p>
+          <p class="text-text-muted">{{ edu.area }}</p>
+          <p class="text-sm text-text-muted">{{ edu.date }}</p>
+          <div class="mt-2">
+            <p class="text-xs font-semibold text-text-muted uppercase tracking-wider mb-1">Relevant Coursework</p>
+            <div class="flex flex-wrap gap-2">
+              <span v-for="course in edu.summary" :key="course" class="text-accent text-xs px-2 py-1 rounded-md border">
+                {{ course }}
+              </span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -72,7 +81,7 @@ onMounted(async() => {
       <!-- Skills -->
       <section class="mb-8">
         <h2 class="text-2xl font-semibold mb-2">Skills</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-text-muted">
+        <div class="grid grid-cols-1 gap-4 text-sm text-text-muted">
           <div v-for="skill in resume.sections.skills.items" :key="skill.id">
             <p class="font-semibold text-text">{{ skill.name }}</p>
             <p>{{ skill.description }}</p>
@@ -94,6 +103,7 @@ onMounted(async() => {
 
       <!-- Certifications & Awards -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <!--
         <section>
           <h2 class="text-2xl font-semibold mb-2">Certifications</h2>
           <ul class="text-sm space-y-1 text-text-muted">
@@ -102,6 +112,7 @@ onMounted(async() => {
             </li>
           </ul>
         </section>
+        -->
         <section>
           <h2 class="text-2xl font-semibold mb-2">Awards</h2>
           <ul class="text-sm space-y-1 text-text-muted">

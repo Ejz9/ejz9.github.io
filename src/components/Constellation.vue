@@ -1,6 +1,5 @@
 <template>
   <vue-particles
-      :key="particleKey"
       id="tsparticles"
       class="absolute inset-0 -z-10"
       :options="particleOptions"
@@ -8,38 +7,9 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref } from 'vue'
 
-const particleOptions = ref({})
-const particleKey = ref(0)
-
-const breakpoints = {
-  sm: 640,
-  md: 768,
-  lg: 1024,
-  xl: 1280,
-  '2xl': 1536
-}
-
-const getScreenCategory = () => {
-  const width = window.innerWidth
-  if (width < breakpoints.sm) return 'xs'
-  if (width < breakpoints.md) return 'sm'
-  if (width < breakpoints.lg) return 'md'
-  if (width < breakpoints.xl) return 'lg'
-  if (width < breakpoints['2xl']) return 'xl'
-  return '2xl'
-}
-
-const setParticleOptions = () => {
-  const screen = getScreenCategory()
-
-  const particleCount = screen === 'xs' ? 40
-      : screen === 'sm' ? 60
-          : screen === 'md' ? 100
-              : 160
-
-  particleOptions.value = {
+const particleOptions = ref({
     background: { color: 'transparent' },
     fpsLimit: 60,
     interactivity: {
@@ -55,7 +25,7 @@ const setParticleOptions = () => {
       }
     },
     particles: {
-      number: { value: particleCount },
+      number: { value: 160 },
       color: { value: '#3b82f6' },
       links: {
         enable: true,
@@ -67,23 +37,26 @@ const setParticleOptions = () => {
       move: { enable: true, speed: 1 },
       size: { value: 2 },
       opacity: { value: 0.5 }
-    }
-  }
-  particleKey.value++
-}
-
-let resizeTimeout
-const onResize = () => {
-  clearTimeout(resizeTimeout)
-  resizeTimeout = setTimeout(setParticleOptions, 150)
-}
-
-onMounted(() => {
-  setParticleOptions()
-  window.addEventListener('resize', onResize)
-})
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', onResize)
-  clearTimeout(resizeTimeout)
+    }, //Need to find a more robust solution for handling particle recalculation because of scroll bar
+    responsive: [
+      {
+        maxWidth: 1024,
+        options: {
+          particles: { number: { value: 100 } }
+        }
+      },
+      {
+        maxWidth: 768,
+        options: {
+          particles: { number: { value: 60 } }
+        }
+      },
+      {
+        maxWidth: 640,
+        options: {
+          particles: { number: { value: 40 } }
+        }
+      }
+    ]
 })
 </script>

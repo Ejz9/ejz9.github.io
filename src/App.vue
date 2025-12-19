@@ -13,12 +13,16 @@ const showParticles = computed(() => {
   if (overrideParticles.value) return false
   return route.meta.showParticles === true
 })
+
+watch(() => route.path, () => {
+  overrideParticles.value = false
+})
 </script>
 
 <template>
   <div class="flex flex-col min-h-screen relative overflow-hidden">
-    <transition name="particles-fade" mode="out-in">
-      <Constellation v-if="showParticles" />
+    <transition name="particles-fade">
+      <Constellation v-show="showParticles" />
     </transition>
 
     <NavBar />

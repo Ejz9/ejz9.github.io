@@ -1,10 +1,17 @@
 <script setup>
 const experiences = [
   {
-    title: 'Computer Science Student',
+    title: 'Graduate Computer Science Student',
     organization: 'University of Wisconsin-Whitewater',
-    period: 'Expected Graduation: December 2025',
-    description: 'Pursuing a Bachelor\'s of Science in Computer Science with a minor in Cybersecurity.',
+    period: 'Expected Graduation: May 2027',
+    description: 'I am currently Pursuing a Master\'s of Science in Computer Science with an emphasis in Cybersecurity Engineering.',
+    type: 'education'
+  },
+  {
+    title: 'Undergraduate Computer Science Student',
+    organization: 'University of Wisconsin-Whitewater',
+    period: 'Graduation: December 2025',
+    description: 'I achieved my Bachelor\'s of Science in Computer Science with a minor in Cybersecurity.',
     type: 'education'
   },
   {
@@ -12,7 +19,7 @@ const experiences = [
     organization: 'Noodles & Company',
     period: 'August 2020 - Present',
     description: 'As a team member at noodles and company I am responsible for various shift positions having completed all around training. ' +
-        'These rotate from providing guest services, preparing product, bagging orders, and cooking the food for guests. I also help train new team members.',
+        'These rotate from providing guest services, preparing product, bagging orders, cooking the food for guests, and training new team members.',
     type: 'work'
   },
 ]

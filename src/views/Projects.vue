@@ -18,7 +18,7 @@ const projects = computed(() => projectStore.projects)
           :description="project.heading"
           :technologies="project.technologies"
           :link="project.id"
-          :image="project.image"
+          :image="project.image || project.images[0]"
       />
     </router-link>
   </div>

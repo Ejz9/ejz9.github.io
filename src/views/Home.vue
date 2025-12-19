@@ -45,7 +45,7 @@ const startAnimation = async () => {
   showContent.value = true;
   localStorage.setItem('animationHasRun', 'true');
   emit('override-particles', false)
-  document.querySelector('header')?.classList.remove('hidden');
+  document.querySelector('nav')?.classList.remove('hidden');
   document.querySelector('footer')?.classList.remove('hidden');
 };
 
@@ -128,13 +128,13 @@ onMounted(async () => {
 
     <section class="mt-20 text-center" v-if="showContent">
       <h2 class="text-3xl text-gradient font-bold mb-4">Projects</h2>
-      <div class="flex flex-wrap justify-center gap-6">
+      <div class="grid grid-cols-3 justify-center gap-6">
         <ProjectCard
             v-for="project in projects"
             :key="project.id"
             :title="project.name"
             :description="project.heading"
-            :tags="project.technologies"
+            :technologies="project.technologies"
             :link="project.id"
         />
       </div>
