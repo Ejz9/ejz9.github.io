@@ -51,7 +51,7 @@ onMounted(async() => {
       <!-- Education -->
       <section class="mb-8">
         <h2 class="text-2xl font-semibold mb-2">Education</h2>
-        <div v-for="edu in resume.sections.education.items" :key="edu.id" class="mb-4 border-b border-border pb-4 last:border-b-0">
+        <div v-for="edu in resume.sections.education.items" :key="edu.id" class="mb-4">
           <p class="font-medium">{{ edu.institution }}</p>
           <p class="text-text-muted">{{ edu.area }}</p>
           <p class="text-sm text-text-muted">{{ edu.date }}</p>
@@ -71,8 +71,8 @@ onMounted(async() => {
         <h2 class="text-2xl font-semibold mb-2">Experience</h2>
         <div v-for="exp in resume.sections.experience.items" :key="exp.id" class="mb-4">
           <p class="font-medium">{{ exp.company }}</p>
-          <p class="text-sm text-text-muted">{{ exp.position }} | {{ exp.date }}</p>
-          <ul class="list-disc list-inside mt-2 space-y-1 text-sm text-text-muted">
+          <p class="text-text-muted">{{ exp.position }} | {{ exp.date }}</p>
+          <ul class="list-disc list-inside mt-2 space-y-1 text-text-muted">
             <li v-for="item in exp.summary" :key="item">{{ item }}</li>
           </ul>
         </div>
@@ -81,7 +81,7 @@ onMounted(async() => {
       <!-- Skills -->
       <section class="mb-8">
         <h2 class="text-2xl font-semibold mb-2">Skills</h2>
-        <div class="grid grid-cols-1 gap-4 text-sm text-text-muted">
+        <div class="grid grid-cols-1 gap-4 text-text-muted">
           <div v-for="skill in resume.sections.skills.items" :key="skill.id">
             <p class="font-semibold text-text">{{ skill.name }}</p>
             <p>{{ skill.description }}</p>
@@ -95,7 +95,7 @@ onMounted(async() => {
         <div v-for="project in resume.sections.projects.items" :key="project.id" class="mb-4">
           <p class="font-medium">{{ project.name }}</p>
           <p class="text-sm text-text-muted">{{ project.date }}</p>
-          <ul class="list-disc list-inside mt-2 space-y-1 text-sm text-text-muted">
+          <ul class="list-disc list-inside mt-2 space-y-1 text-text-muted">
             <li v-for="item in project.summary" :key="item">{{ item }}</li>
           </ul>
         </div>
@@ -115,7 +115,7 @@ onMounted(async() => {
         -->
         <section>
           <h2 class="text-2xl font-semibold mb-2">Awards</h2>
-          <ul class="text-sm space-y-1 text-text-muted">
+          <ul class="space-y-1 text-text-muted">
             <li v-for="award in resume.sections.awards.items" :key="award.id">
               {{ award.title }} – {{ award.date }}
             </li>
