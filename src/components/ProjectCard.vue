@@ -1,4 +1,7 @@
 <script setup>
+import {Button} from "@/components/ui/button/index.ts";
+import {Icon} from "@iconify/vue";
+
 defineProps({
   title: String,
   description: String,
@@ -7,26 +10,27 @@ defineProps({
   technologies: Array
 })
 </script>
-bg-white/10 dark:bg-zinc-900/50 shadow-lg hover:shadow-indigo-500/20 backdrop-blur-md hover:shadow-2xl transition-colors duration-300
+
 <template>
-  <div class="w-full card-glass rounded-lg overflow-hidden shadow-lg hover:shadow-indigo-500/20 hover:shadow-2xl transition duration-200 hover:-translate-y-2">
-    <img v-if="image" :src="image" class="w-full h-48 object-cover" alt="Project Image">
-    <div class="p-6">
+  <div class="card shadow-lg hover:shadow-indigo-500/20 hover:shadow-2xl transition duration-200 hover:-translate-y-2">
+    <img v-if="image" :src="image" alt="Project Image">
+    <div class="m-6">
       <h3 class="text-xl font-semibold mb-2">{{ title }}</h3>
-      <p class="">{{ description }}</p>
+      <p>{{ description }}</p>
     </div>
-    <div class="flex flex-wrap gap-2 mb-4 text-center justify-center px-6">
-      <span v-if="technologies" v-for="(tech, index) in technologies.slice(0,4)" :key="index" class="bg-accent text-text text-xs px-2 py-1 rounded-full">{{ tech }}</span>
-      <span v-if="technologies.length > 4" class="bg-accent text-text text-xs px-3 py-1 rounded-full">+{{ technologies.length - 4 }}</span>
+    <div class="flex flex-wrap gap-2 m-4 justify-center text-xs">
+      <span v-if="technologies" v-for="tech in technologies.slice(0,4)" :key="tech" class="bg-primary px-2 py-1 rounded-full text-white">
+        {{ tech }}
+      </span>
+      <span v-if="technologies.length > 4" class="bg-primary px-2 py-1 rounded-full text-white">
+        +{{ technologies.length - 4 }}
+      </span>
     </div>
-    <div>
-      <router-link :to="`/projects/${link}`" class="btn items-center">
+    <Button as-child variant="link" class="text-lg font-semibold m-4 ">
+      <router-link :to="`/projects/${link}`">
         View Project
-        <span class="sr-only">View Project</span>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-        </svg>
+        <Icon icon="material-symbols:arrow-right-alt" />
       </router-link>
-    </div>
+    </Button>
   </div>
 </template>

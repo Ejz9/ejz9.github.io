@@ -1,27 +1,40 @@
-<script setup lang="ts">
-import ContactIcons from "./ContactIcons.vue";
-import GitHubIcon from "./icons/GitHub.vue";
-import LinkedInIcon from "./icons/LinkedIn.vue";
-import MailIcon from "./icons/Mail.vue";
+<script setup>
+import {Button} from "../../src_legacy/components/ui/button/index.js";
+import {Icon} from "@iconify/vue";
 
 const links = [
-  { label: 'GitHub', href: 'https://github.com/ejz9', icon: GitHubIcon },
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/edward-zurakowski/', icon: LinkedInIcon},
-  { label: 'MailTo', href: 'mailto:contact@ztree.dev', icon: MailIcon}
+  { label: 'GitHub', href: 'https://github.com/ejz9', icon: "mdi:github"},
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/edward-zurakowski/', icon: "mdi:linkedin" },
+  { label: 'MailTo', href: 'mailto:ejz11@proton.me', icon: "material-symbols:mail-rounded"}
 ];
 </script>
 
 <template>
-  <footer class="container my-8 mx-auto px-4 md:px-0 text-center">
-    <div class="flex flex-col justify-between items-center md:flex-row gap-4">
-      <div class="text-center md:text-left mb-2">
-        <span class="text-xl font-bold">Edward<span class="text-accent">Z</span></span>
+  <footer class="container mx-auto mt-8">
+    <div class="flex flex-row justify-between items-center gap-6">
+
+      <div class="text-center text-left">
+        <span class="text-xl font-bold">Edward<span class="text-primary">Z</span></span>
         <p class="mt-2 text-sm">Full Stack Tinkerer & Cybersecurity Enthusiast</p>
       </div>
-      <ContactIcons :links="links" class="mt-auto"/>
+
+      <div class="flex gap-2">
+        <Button as-child variant="icon" v-for="link in links" :key="link.label">
+          <a
+              :href="link.href"
+              target="_blank"
+              rel="noopener noreferrer"
+              :aria-label="link.label"
+          >
+            <Icon :icon="link.icon" class="size-6" />
+          </a>
+        </Button>
+      </div>
+
     </div>
-    <div class="mt-2 border-t border-border pt-4 text-sm text-center">
-      © {{ new Date().getFullYear() }} Edward Zurakowski. All rights reserved.
+    <div class="my-4 pt-4 border-t flex justify-center items-center gap-1 text-sm text-muted-foreground">
+      <Icon icon="mdi:copyright" class="size-4" />
+      <span>{{ new Date().getFullYear() }} Edward Zurakowski. All rights reserved.</span>
     </div>
   </footer>
 </template>
