@@ -2,7 +2,7 @@
 import {Button} from "@/components/ui/button/index.ts";
 import {Icon} from "@iconify/vue";
 import ProjectCard from "@/components/ProjectCard.vue";
-import projects from "../projects.json";
+import projects from "/public/projects.json";
 </script>
 
 <template>

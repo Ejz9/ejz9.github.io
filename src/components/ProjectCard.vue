@@ -12,7 +12,7 @@ defineProps({
 </script>
 
 <template>
-  <div class="card shadow-lg hover:shadow-indigo-500/20 hover:shadow-2xl transition duration-200 hover:-translate-y-2">
+  <div class="card shadow-lg hover:shadow-indigo-500/20 hover:shadow-2xl transition duration-200 hover:-translate-y-2 overflow-hidden">
     <img v-if="image" :src="image" alt="Project Image" class="w-full h-48 object-cover">
     <div class="m-6">
       <h3 class="text-xl font-semibold mb-2">{{ title }}</h3>
