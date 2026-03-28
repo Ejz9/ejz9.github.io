@@ -4,9 +4,11 @@ import Footer from "@/components/Footer.vue";
 </script>
 
 <template>
-  <div class="min-h-screen">
+  <div class="flex flex-col min-h-dvh">
     <Navbar />
-    <router-view />
+    <main class="flex-grow">
+      <router-view />
+    </main>
     <Footer class="hidden md:block"/>
   </div>
 </template>
