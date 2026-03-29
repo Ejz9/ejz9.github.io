@@ -11,7 +11,7 @@ import {ref} from "vue";
 
 const formSchema = toTypedSchema(z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(50),
-  email: z.string().email("Enter a valid email"),
+  email: z.email("Enter a valid email"),
   message: z.string().min(10, "Message must be at least 10 characters").max(1000)
 }))
 
@@ -23,7 +23,7 @@ const [message, messageProps] = defineField("message")
 
 const formRef = ref(null)
 
-const onSubmit = handleSubmit((values) => {
+const onSubmit = handleSubmit(() => {
   if (formRef.value) formRef.value.submit();
 })
 </script>

@@ -46,20 +46,21 @@ const linkIcons = {
        class="container mx-auto backdrop-blur-xs shadow-lg space-y-8 px-8 py-8 max-w-5xl"
   >
     <section>
-      <div class="flex items-center justify-between">
+      <div class="flex items-center justify-between flex-wrap-reverse">
         <h1 class="text-4xl font-bold mb-2">{{ resume.basics.name }}</h1>
         <Button
             as="a"
             href="/march-2026-redacted.pdf"
             download
             variant="outline"
+            class="flex w-full md:w-auto py-8 md:py-0 mb-4 md:mb-0"
         >
           <Icon icon="material-symbols:download" />
           Download Resume (PDF)
         </Button>
       </div>
       <h3 class="text-2xl text-muted-foreground mb-4">{{ resume.basics.headline }}</h3>
-      <div class="flex gap-2">
+      <div class="flex flex-wrap gap-2">
         <Button
             as="a"
             variant="outline"

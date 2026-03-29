@@ -37,14 +37,14 @@ const project = computed(() => projects.find(project => project.id === props.id)
       </Carousel>
     </div>
 
-    <div>
+    <div class="mb-8">
       <h3 class="text-2xl font-semibold mb-4">{{ project.heading }}</h3>
       <p class="mb-4 text-muted-foreground leading-relaxed" v-for="paragraph in project.description" :key="paragraph">
         {{ paragraph }}
       </p>
     </div>
 
-    <div class="w-full mt-8 flex flex-col md:flex-row justify-between items-start md:items-center">
+    <div class="w-full flex flex-col md:flex-row justify-between items-start md:items-center">
 
       <div class="flex flex-wrap gap-2">
         <span
@@ -56,7 +56,7 @@ const project = computed(() => projects.find(project => project.id === props.id)
         </span>
       </div>
 
-      <div class="flex gap-4">
+      <div class="flex gap-4 mt-4 md:mt-0">
         <Button v-if="project.code" as="a" variant="outline" :href="project.code" target="_blank">
           <Icon icon="material-symbols:code" />
           View Code

@@ -20,7 +20,7 @@ const externalLinks = [
 </script>
 
 <template>
-  <nav class="container mx-auto items-center">
+  <nav class="container mx-auto flex items-center">
     <ul class="hidden md:flex space-x-4 my-4">
       <li v-for="item in navItems" :key="item.path">
         <router-link :to="item.path" class="relative px-2 py-2 font-medium">
@@ -39,10 +39,14 @@ const externalLinks = [
           {{ link.name }}
         </a>
       </li>
-      <li class="ml-auto"><ModeToggle /></li>
     </ul>
-    <div class="md:hidden ml-auto">
-      <MobileNav :navItems="navItems" :externalLinks="externalLinks" :route="route" />
+    <div class="ml-auto flex items-center">
+      <div class="hidden md:flex">
+        <ModeToggle />
+      </div>
+      <div class="md:hidden">
+        <MobileNav :navItems="navItems" :externalLinks="externalLinks" :route="route"/>
+      </div>
     </div>
   </nav>
 </template>

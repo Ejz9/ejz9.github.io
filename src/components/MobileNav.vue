@@ -2,6 +2,7 @@
 import {Button} from "@/components/ui/button";
 import {Sheet, SheetTrigger, SheetContent, SheetClose } from "@/components/ui/sheet";
 import {Icon} from "@iconify/vue";
+import ModeToggle from "@/components/ModeToggle.vue";
 
 defineProps({
   navItems: Array,
@@ -14,10 +15,10 @@ defineProps({
   <Sheet>
     <SheetTrigger as-child>
       <Button variant="ghost" size="icon">
-        <Icon icon="material-symbols:menu" class="size-6" />
+        <Icon icon="material-symbols:menu" class="size-8 mr-auto"/>
       </Button>
     </SheetTrigger>
-    <SheetContent side="right" class="bg-/80 backdrop-blur-md p-6 flex flex-col gap-6">
+    <SheetContent side="right" class="w-full items-center backdrop-blur-xs p-6 flex flex-col gap-6">
       <router-link
           v-for="(item, index) in navItems"
           :key="item.path"
@@ -59,6 +60,7 @@ defineProps({
           <a href="mailto:ejz11@proton.me" class="p-2 rounded-full bg-secondary hover:bg-primary hover:text-primary-foreground">
             <Icon icon="material-symbols:mail-rounded" class="size-6" />
           </a>
+          <ModeToggle mobile class="ml-auto"/>
         </div>
       </div>
     </SheetContent>

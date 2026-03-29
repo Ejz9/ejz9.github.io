@@ -10,7 +10,7 @@ onMounted(() => {
   let animationFrameId
   let particles = []
 
-  const particleCount = window.innerWidth < 768 ? 40 : 160
+  let particleCount = window.innerWidth < 768 ? 40 : 160
   const connectionDistance = 120
   const mouseGrabDistance = 150
 
@@ -23,6 +23,8 @@ onMounted(() => {
   const resize = () => {
     canvas.width = window.innerWidth
     canvas.height = window.innerHeight
+
+    particleCount = window.innerWidth < 768 ? 40 : 160
   }
 
   class Particle {

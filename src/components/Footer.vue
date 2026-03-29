@@ -1,5 +1,5 @@
 <script setup>
-import {Button} from "../../src_legacy/components/ui/button/index.js";
+ import {Button} from "@/components/ui/button";
 import {Icon} from "@iconify/vue";
 
 const links = [
@@ -10,16 +10,16 @@ const links = [
 </script>
 
 <template>
-  <footer class="container mx-auto mt-8">
+  <footer class="container mx-auto">
     <div class="flex flex-row justify-between items-center gap-6">
 
-      <div class="text-center text-left">
+      <div>
         <span class="text-xl font-bold">Edward<span class="text-primary">Z</span></span>
         <p class="mt-2 text-sm">Full Stack Tinkerer & Cybersecurity Enthusiast</p>
       </div>
 
       <div class="flex gap-2">
-        <Button as-child variant="icon" v-for="link in links" :key="link.label">
+        <Button as-child variant="ghost" size="icon" v-for="link in links" :key="link.label">
           <a
               :href="link.href"
               target="_blank"
