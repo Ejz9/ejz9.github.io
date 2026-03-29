@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import projects from "@/projects.json"
 import {computed} from "vue";
 import {
@@ -7,8 +7,8 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious
-} from "@/components/ui/carousel/index.ts";
-import {Button} from "@/components/ui/button/index.ts";
+} from "@/components/ui/carousel/index";
+import {Button} from "@/components/ui/button/index";
 import {Icon} from "@iconify/vue";
 
 

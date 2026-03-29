@@ -1,14 +1,14 @@
-<script setup>
+<script setup lang="ts">
 import {Button} from "@/components/ui/button";
 import {Sheet, SheetTrigger, SheetContent, SheetClose } from "@/components/ui/sheet";
 import {Icon} from "@iconify/vue";
 import ModeToggle from "@/components/ModeToggle.vue";
 
-defineProps({
-  navItems: Array,
-  externalLinks: Array,
-  route: Object
-})
+defineProps<{
+  navItems: { name: string, path: string, icon: string }[],
+  externalLinks: { name: string, href: string }[],
+  route: { path: string }
+}>();
 </script>
 
 <template>

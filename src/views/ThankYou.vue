@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import {Icon} from "@iconify/vue";
 import {Button} from "@/components/ui/button/index.js";
 import confetti from "canvas-confetti";

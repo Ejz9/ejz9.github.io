@@ -1,5 +1,5 @@
-<script setup>
-import {Button} from "@/components/ui/button/index.ts";
+<script setup lang="ts">
+import {Button} from "@/components/ui/button/index";
 import {Icon} from "@iconify/vue";
 import ProjectCard from "@/components/ProjectCard.vue";
 import projects from "@/projects.json";

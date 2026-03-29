@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import projects from "@/projects.json";
 import ProjectCard from "@/components/ProjectCard.vue";
 </script>
@@ -18,7 +18,7 @@ import ProjectCard from "@/components/ProjectCard.vue";
             :description="project.heading"
             :technologies="project.technologies"
             :link="project.id"
-            :image="project.image || project.images[0]"
+            :image="project.image || project.images?.[0]"
         />
       </router-link>
     </div>

@@ -1,10 +1,10 @@
-<script setup>
+<script setup lang="ts">
 import resume from "@/march-2026.json";
 import {Button} from "@/components/ui/button/index.js";
 import {Icon} from "@iconify/vue";
 import {vAutoAnimate} from "@formkit/auto-animate/vue";
 
-const skillIcons = {
+const skillIcons: { [key: string]: string } = {
   "Java": "mdi:language-java",
   "JavaScript": "mdi:language-javascript",
   "TypeScript": "mdi:language-typescript",
@@ -35,7 +35,7 @@ const skillIcons = {
   "Link Validation": "material-symbols:cable",
 }
 
-const linkIcons = {
+const linkIcons: { [key: string]: string } = {
   "edward-zurakowski": "mdi:linkedin",
   "Ejz9": "mdi:github",
 }

@@ -1,14 +1,14 @@
-<script setup>
-import {Button} from "@/components/ui/button/index.ts";
+<script setup lang="ts">
+import {Button} from "@/components/ui/button/index";
 import {Icon} from "@iconify/vue";
 
-defineProps({
-  title: String,
-  description: String,
-  image: String,
-  link: String,
-  technologies: Array
-})
+defineProps<{
+  title: string,
+  description: string,
+  image?: string,
+  link: string,
+  technologies: string[]
+}>();
 </script>
 
 <template>

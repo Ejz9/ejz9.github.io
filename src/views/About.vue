@@ -1,8 +1,8 @@
-<script setup>
+<script setup lang="ts">
 import experiences from "@/experiences.json";
 import {Icon} from "@iconify/vue";
 
-const experienceIcons = {
+const experienceIcons: { [key: string]: string } = {
   "education": "material-symbols:school",
   "work": "material-symbols:work"
 }
@@ -29,7 +29,7 @@ const experienceIcons = {
 
     <section>
       <h2 class="text-2xl font-bold mb-6">My Journey</h2>
-      <div class="flex gap-4" v-for="experience in experiences" :key="experience.id">
+      <div class="flex gap-4" v-for="experience in experiences" :key="experience.title">
         <div class="flex flex-col items-center">
           <Icon
               v-if="experienceIcons[experience.type]"

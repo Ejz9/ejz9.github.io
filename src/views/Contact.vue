@@ -1,12 +1,12 @@
-<script setup>
+<script setup lang="ts">
 import {toTypedSchema} from "@vee-validate/zod";
 import * as z from "zod";
 import {useForm} from "vee-validate";
 
-import {Field, FieldError, FieldGroup, FieldLabel} from "@/components/ui/field/index.ts";
-import {Input} from "@/components/ui/input/index.ts";
-import {Textarea} from "@/components/ui/textarea/index.ts";
-import {Button} from "@/components/ui/button/index.ts";
+import {Field, FieldError, FieldGroup, FieldLabel} from "@/components/ui/field/index";
+import {Input} from "@/components/ui/input/index";
+import {Textarea} from "@/components/ui/textarea/index";
+import {Button} from "@/components/ui/button/index";
 import {ref} from "vue";
 
 const formSchema = toTypedSchema(z.object({
@@ -21,7 +21,7 @@ const [name, nameProps] = defineField("name")
 const [email, emailProps] = defineField("email")
 const [message, messageProps] = defineField("message")
 
-const formRef = ref(null)
+const formRef = ref<HTMLFormElement | null>(null)
 
 const onSubmit = handleSubmit(() => {
   if (formRef.value) formRef.value.submit();

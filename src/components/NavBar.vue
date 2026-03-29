@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import ModeToggle from "@/components/ModeToggle.vue";
 import {useRoute} from "vue-router";
 import MobileNav from "@/components/MobileNav.vue";

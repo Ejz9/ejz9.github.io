@@ -1,33 +1,44 @@
-<script setup>
+<script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 // Generated in part with Gemini
 
-const canvasRef = ref(null)
+const canvasRef = ref<HTMLCanvasElement | null>(null)
 
 onMounted(() => {
+
+  if (!canvasRef.value) return
+
   const canvas = canvasRef.value
-  const ctx = canvas.getContext('2d')
-  let animationFrameId
-  let particles = []
+
+  const rawCtx = canvas.getContext('2d')
+  if (!rawCtx) return
+  const ctx = rawCtx as CanvasRenderingContext2D
+
+  let animationFrameId: number
 
   let particleCount = window.innerWidth < 768 ? 40 : 160
   const connectionDistance = 120
   const mouseGrabDistance = 150
 
-  const dotColor = '59, 130, 246'    // #3b82f6 (Primary Blue)
-  const darkThemeLine = '244, 244, 245'  // #f4f4f5 (Off-white)
-  const lightThemeLine = '39, 39, 42'    // #27272a (Zinc-800)
+  const dotColor = '59, 130, 246'
+  const darkThemeLine = '244, 244, 245'
+  const lightThemeLine = '39, 39, 42'
 
-  let mouse = { x: null, y: null }
+  let mouse: { x: number | null; y: number | null } = { x: null, y: null }
 
   const resize = () => {
     canvas.width = window.innerWidth
     canvas.height = window.innerHeight
-
     particleCount = window.innerWidth < 768 ? 40 : 160
   }
 
   class Particle {
+    x: number;
+    y: number;
+    vx: number;
+    vy: number;
+    radius: number;
+
     constructor() {
       this.x = Math.random() * canvas.width
       this.y = Math.random() * canvas.height
@@ -35,6 +46,7 @@ onMounted(() => {
       this.vy = (Math.random() - 0.5) * 0.15
       this.radius = 2
     }
+
     update() {
       this.x += this.vx
       this.y += this.vy
@@ -45,6 +57,7 @@ onMounted(() => {
       if (this.y < -this.radius) this.y = canvas.height + this.radius
       else if (this.y > canvas.height + this.radius) this.y = -this.radius
     }
+
     draw() {
       ctx.beginPath()
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
@@ -52,6 +65,8 @@ onMounted(() => {
       ctx.fill()
     }
   }
+
+  let particles: Particle[] = []
 
   const initParticles = () => {
     particles = []
