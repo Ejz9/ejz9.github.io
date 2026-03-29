@@ -5,7 +5,7 @@ import ProjectCard from "@/components/ProjectCard.vue";
 </script>
 
 <template>
-  <div class="container mx-auto py-16 text-center">
+  <div class="container mx-auto text-center">
     <h1 class="text-4xl font-bold mb-12">My Projects</h1>
     
     <div class="grid grid-cols-1 gap-8 mx-8 md:grid-cols-2 lg:grid-cols-3">

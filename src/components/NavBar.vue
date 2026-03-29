@@ -20,7 +20,7 @@ const externalLinks = [
 </script>
 
 <template>
-  <nav class="container mx-auto items-center bg-background/95 backdrop-blur-sm">
+  <nav class="container mx-auto items-center">
     <ul class="hidden md:flex space-x-4 my-4">
       <li v-for="item in navItems" :key="item.path">
         <router-link :to="item.path" class="relative px-2 py-2 font-medium">

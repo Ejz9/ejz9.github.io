@@ -6,8 +6,8 @@ import projects from "/public/projects.json";
 </script>
 
 <template>
-  <div class="flex flex-col items-center text-center">
-    <section class="mt-20">
+  <div class="flex flex-col items-center text-center mx-4">
+    <section class="mb-20">
       <h1 class="text-5xl font-extrabold font-mono text-gradient typing-text mb-4 drop-shadow-[0_0_0.3rem_#522bed]">Hello World!</h1>
       <h1 class="text-5xl font-bold mb-4">Edward Zurakowski</h1>
       <h3 class="text-2xl font-light mb-8">Full Stack Tinkerer</h3>
@@ -25,7 +25,7 @@ import projects from "/public/projects.json";
       </div>
     </section>
 
-    <section class="mt-20">
+    <section class="mb-20">
       <h2 class="text-3xl text-gradient font-bold">About Me</h2>
       <p class="text-lg mt-4 px-4">
         I'm a passionate computer science student focused on cybersecurity and full-stack development. <br>
@@ -39,7 +39,7 @@ import projects from "/public/projects.json";
       </Button>
     </section>
 
-    <section class="mt-20 mx-4">
+    <section class="mb-20">
       <h2 class="text-3xl text-gradient font-bold">Projects</h2>
       <div class="grid md:grid-cols-3 gap-6 mt-4">
         <ProjectCard
@@ -53,7 +53,7 @@ import projects from "/public/projects.json";
       </div>
     </section>
 
-    <section class="mt-20 mb-10">
+    <section class="mb-20">
       <h2 class="text-2xl text-gradient font-bold">Let's Work Together!</h2>
       <p class="text-lg mt-4 px-4">Whether it's a personal project, open-source idea, or just to connect - feel free to reach out.</p>
       <Button as-child variant="default" class="text-lg mt-8 p-8">

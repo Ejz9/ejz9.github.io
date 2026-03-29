@@ -20,7 +20,7 @@ const project = computed(() => projects.find(project => project.id === props.id)
 </script>
 
 <template>
-  <div v-if="project" class="container mx-auto max-w-5xl my-16 px-4 flex flex-col items-center">
+  <div v-if="project" class="container mx-auto max-w-5xl px-4 flex flex-col items-center">
 
     <h1 class="text-4xl font-bold mb-6 text-center">{{ project.name }}</h1>
 
