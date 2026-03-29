@@ -1,62 +1,159 @@
-<template>
-  <vue-particles
-      id="tsparticles"
-      class="absolute inset-0 -z-10"
-      :options="particleOptions"
-  />
-</template>
+<script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
+// Generated in part with Gemini
 
-<script setup>
-import { ref } from 'vue'
+const canvasRef = ref<HTMLCanvasElement | null>(null)
 
-const particleOptions = ref({
-    background: { color: 'transparent' },
-    fpsLimit: 60,
-    interactivity: {
-      events: {
-        onHover: { enable: true, mode: 'grab' },
-        resize: true
-      },
-      modes: {
-        grab: {
-          distance: 150,
-          links: { opacity: 1 }
+onMounted(() => {
+
+  if (!canvasRef.value) return
+
+  const canvas = canvasRef.value
+
+  const rawCtx = canvas.getContext('2d')
+  if (!rawCtx) return
+  const ctx = rawCtx as CanvasRenderingContext2D
+
+  let animationFrameId: number
+
+  let particleCount = window.innerWidth < 768 ? 40 : 160
+  const connectionDistance = 120
+  const mouseGrabDistance = 150
+
+  const dotColor = '59, 130, 246'
+  const darkThemeLine = '244, 244, 245'
+  const lightThemeLine = '39, 39, 42'
+
+  let mouse: { x: number | null; y: number | null } = { x: null, y: null }
+
+  const resize = () => {
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+    particleCount = window.innerWidth < 768 ? 40 : 160
+  }
+
+  class Particle {
+    x: number;
+    y: number;
+    vx: number;
+    vy: number;
+    radius: number;
+
+    constructor() {
+      this.x = Math.random() * canvas.width
+      this.y = Math.random() * canvas.height
+      this.vx = (Math.random() - 0.5) * 0.15
+      this.vy = (Math.random() - 0.5) * 0.15
+      this.radius = 2
+    }
+
+    update() {
+      this.x += this.vx
+      this.y += this.vy
+
+      if (this.x < -this.radius) this.x = canvas.width + this.radius
+      else if (this.x > canvas.width + this.radius) this.x = -this.radius
+
+      if (this.y < -this.radius) this.y = canvas.height + this.radius
+      else if (this.y > canvas.height + this.radius) this.y = -this.radius
+    }
+
+    draw() {
+      ctx.beginPath()
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2)
+      ctx.fillStyle = `rgba(${dotColor}, 0.8)`
+      ctx.fill()
+    }
+  }
+
+  let particles: Particle[] = []
+
+  const initParticles = () => {
+    particles = []
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle())
+    }
+  }
+
+  const animate = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+
+    const isDark = document.documentElement.classList.contains('dark')
+    const activeLineColor = isDark ? darkThemeLine : lightThemeLine
+
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].update()
+      particles[i].draw()
+
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x
+        const dy = particles[i].y - particles[j].y
+        const distance = Math.sqrt(dx * dx + dy * dy)
+
+        if (distance < connectionDistance) {
+          let lineOpacity = 0.5 - (distance / connectionDistance) * 0.5
+
+          if (mouse.x && mouse.y) {
+            const dxMouse = particles[i].x - mouse.x
+            const dyMouse = particles[i].y - mouse.y
+            const distMouse = Math.sqrt(dxMouse * dxMouse + dyMouse * dyMouse)
+
+            if (distMouse < mouseGrabDistance) {
+              lineOpacity += 0.4 * (1 - distMouse / mouseGrabDistance)
+            }
+          }
+
+          ctx.beginPath()
+          ctx.moveTo(particles[i].x, particles[i].y)
+          ctx.lineTo(particles[j].x, particles[j].y)
+          ctx.strokeStyle = `rgba(${activeLineColor}, ${lineOpacity})`
+          ctx.lineWidth = 1
+          ctx.stroke()
         }
       }
-    },
-    particles: {
-      number: { value: 160 },
-      color: { value: '#3b82f6' },
-      links: {
-        enable: true,
-        distance: 120,
-        color: '#f4f4f5',
-        opacity: 0.5,
-        width: 1
-      },
-      move: { enable: true, speed: 1 },
-      size: { value: 2 },
-      opacity: { value: 0.5 }
-    }, //Need to find a more robust solution for handling particle recalculation because of scroll bar
-    responsive: [
-      {
-        maxWidth: 1024,
-        options: {
-          particles: { number: { value: 100 } }
-        }
-      },
-      {
-        maxWidth: 768,
-        options: {
-          particles: { number: { value: 60 } }
-        }
-      },
-      {
-        maxWidth: 640,
-        options: {
-          particles: { number: { value: 40 } }
+
+      if (mouse.x && mouse.y) {
+        const dx = particles[i].x - mouse.x
+        const dy = particles[i].y - mouse.y
+        const distance = Math.sqrt(dx * dx + dy * dy)
+
+        if (distance < mouseGrabDistance) {
+          ctx.beginPath()
+          ctx.moveTo(particles[i].x, particles[i].y)
+          ctx.lineTo(mouse.x, mouse.y)
+          ctx.strokeStyle = `rgba(${activeLineColor}, ${0.8 - (distance / mouseGrabDistance) * 0.8})`
+          ctx.lineWidth = 1
+          ctx.stroke()
         }
       }
-    ]
+    }
+    animationFrameId = requestAnimationFrame(animate)
+  }
+
+  window.addEventListener('resize', () => {
+    resize()
+    initParticles()
+  })
+  window.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX
+    mouse.y = e.clientY
+  })
+  window.addEventListener('mouseout', () => {
+    mouse.x = null
+    mouse.y = null
+  })
+
+  resize()
+  initParticles()
+  animate()
+
+  onUnmounted(() => {
+    window.removeEventListener('resize', resize)
+    cancelAnimationFrame(animationFrameId)
+  })
 })
 </script>
+
+<template>
+  <canvas ref="canvasRef" class="fixed inset-0 -z-10 bg-background pointer-events-none"></canvas>
+</template>

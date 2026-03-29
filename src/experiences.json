@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Data Center Technician",
+    "organization": "TEKsystems (Contracted to Microsoft)",
+    "period": "January 2026 - Present",
+    "description": "I currently work as a level 3 data center technician performing break-fix and critical environment operations.",
+    "type": "work"
+  },
+  {
+    "title": "Graduate Computer Science Student",
+    "organization": "University of Wisconsin-Whitewater",
+    "period": "Expected Graduation: May 2027",
+    "description": "I am pursuing a Master's of Science in Computer Science with an emphasis in Cybersecurity Engineering.",
+    "type": "education"
+  },
+  {
+    "title": "Undergraduate Computer Science Student",
+    "organization": "University of Wisconsin-Whitewater",
+    "period": "Graduation: December 2025",
+    "description": "I achieved my Bachelor's of Science in Computer Science with a minor in Cybersecurity.",
+    "type": "education"
+  },
+  {
+    "title": "Team Member",
+    "organization": "Noodles & Company",
+    "period": "August 2020 - Present",
+    "description": "As a team member at noodles and company I am responsible for various shift positions having completed all around training. These rotate from providing guest services, preparing product, bagging orders, cooking the food for guests, and training new team members.",
+    "type": "work"
+  }
+]

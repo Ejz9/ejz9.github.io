@@ -1,54 +1,93 @@
 <script setup lang="ts">
+import projects from "@/projects.json"
+import {computed} from "vue";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious
+} from "@/components/ui/carousel/index";
+import {Button} from "@/components/ui/button/index";
+import {Icon} from "@iconify/vue";
 
-import {computed, onMounted} from "vue";
-import { useProjectStore } from "@/stores/projectStore";
-import {useRoute} from "vue-router";
-import Carousel from "@/components/Carousel.vue";
-const projectStore = useProjectStore()
 
-const route = useRoute()
-
-onMounted(() => {
-  projectStore.selectProject(route.params.id)
+const props = defineProps({
+  id: String
 })
 
-const project = computed(() => projectStore.selectedProject)
+const project = computed(() => projects.find(project => project.id === props.id))
 </script>
 
 <template>
-<div v-if="project" class="mx-auto md:py-16 md:px-0 max-w-4xl">
-  <div class="block p-6 text-text">
-    <h1 class="text-4xl font-bold mb-6">{{ project.name }}</h1>
+  <div v-if="project" class="container mx-auto max-w-5xl px-4 flex flex-col items-center">
 
-    <img v-if="project.image" :src="project.image" class="w-full h-64 object-cover rounded-lg mb-6" alt="Project Image">
-    <Carousel v-if="project.images" :images="project.images" />
+    <h1 class="text-4xl font-bold mb-6 text-center">{{ project.name }}</h1>
 
-
-    <h3 class="text-lg font-semibold mb-4">{{ project.heading }}</h3>
-    <p class="mb-4" v-for="(paragraph, index) in project.description" :key="index">{{ paragraph }}</p>
-
-    <div>
-    <span  v-for="tech in project.technologies" :key="tech" class="inline-flex bg-accent text-text text-sm px-3 py-1 rounded mr-2 mb-2">
-      {{ tech }}
-    </span>
+    <div class="mb-10">
+      <img v-if="project.image" :src="project.image" alt="Project Image" class="rounded-lg object-cover shadow-lg" />
+      <Carousel v-if="project.images" class="max-w-7xl">
+        <CarouselContent>
+          <CarouselItem v-for="(image, index) in project.images" :key="index">
+            <img :src="image" alt="Project Image" class="rounded-lg" />
+          </CarouselItem>
+        </CarouselContent>
+        <CarouselPrevious class="hidden md:flex" />
+        <CarouselNext class="hidden md:flex" />
+      </Carousel>
     </div>
 
-    <div class="space-x-4 mt-4">
-      <a v-if="project.code" :href="project.code" target="_blank" class="text-accent hover:text-accent-hover underline">View Code</a>
-      <a v-if="project.demo" :href="project.demo" target="_blank" class="text-accent hover:text-accent-hover underline">Live Demo</a>
+    <div class="mb-8">
+      <h3 class="text-2xl font-semibold mb-4">{{ project.heading }}</h3>
+      <p class="mb-4 text-muted-foreground leading-relaxed" v-for="paragraph in project.description" :key="paragraph">
+        {{ paragraph }}
+      </p>
     </div>
 
-    <div class="text-center my-10 text-3xl">
-      <router-link to="/projects" class="btn btn-primary mt-3">
+    <div class="w-full flex flex-col md:flex-row justify-between items-start md:items-center">
+
+      <div class="flex flex-wrap gap-2">
+        <span
+            v-for="tech in project.technologies"
+            :key="tech"
+            class="bg-secondary text-secondary-foreground text-sm font-medium rounded-md px-3 py-1"
+        >
+          {{ tech }}
+        </span>
+      </div>
+
+      <div class="flex gap-4 mt-4 md:mt-0">
+        <Button v-if="project.code" as="a" variant="outline" :href="project.code" target="_blank">
+          <Icon icon="material-symbols:code" />
+          View Code
+        </Button>
+        <Button v-if="project.demo" as="a" :href="project.demo" target="_blank">
+          <Icon icon="material-symbols:open-in-new-rounded" />
+          Live Demo
+        </Button>
+      </div>
+
+    </div>
+
+    <div class="mt-16">
+      <Button as-child variant="ghost" class="gap-2">
+        <router-link to="/projects">
+          <Icon icon="material-symbols:arrow-left-alt" />
+          Back to Projects
+        </router-link>
+      </Button>
+    </div>
+
+  </div>
+
+  <div v-else class="container mx-auto flex flex-col min-h-[75vh] items-center justify-center">
+    <p class="text-xl mb-4 text-muted-foreground">Project not found.</p>
+    <Button as-child>
+      <router-link to="/projects">
+        <Icon icon="material-symbols:arrow-left-alt" />
         Back to Projects
       </router-link>
-    </div>
-  </div>
-</div>
-
-  <div v-else class="text-center my-125 text-3xl">
-    <p class="text-text">Project not found.</p>
-    <router-link to="/projects" class="inline-block btn btn-primary mt-3">Back to Projects</router-link>
+    </Button>
   </div>
 </template>
 

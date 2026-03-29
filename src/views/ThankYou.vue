@@ -1,10 +1,8 @@
-<script setup>
-import confetti from 'canvas-confetti'
-import { onMounted, ref } from 'vue'
-import { Button } from '@/components/ui/button'
-
-
-const parent = ref(null)
+<script setup lang="ts">
+import {Icon} from "@iconify/vue";
+import {Button} from "@/components/ui/button/index.js";
+import confetti from "canvas-confetti";
+import {onMounted} from "vue";
 
 onMounted(() => {
   confetti({
@@ -16,24 +14,19 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="text-text bg-background flex flex-col items-center justify-center px-4 py-20 min-h-[calc(100vh-10rem)]">
-    <div
-        class="w-full max-w-xl p-8 text-center rounded-xl border border-border bg-white/10 dark:bg-zinc-900/50 backdrop-blur-md shadow-2xl transition-colors duration-300"
-    >
-      <div class="flex justify-center mb-4">
-        <div class="h-12 w-12 rounded-full bg-green-100 dark:bg-green-900 flex items-center justify-center">
-          <svg class="h-6 w-6 text-green-600 dark:text-green-300" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-        </div>
-      </div>
-      <h1 class="text-2xl font-semibold text-foreground">Message Sent!</h1>
-      <p class="mt-2 text-muted-foreground">
-        Thanks for reaching out — I'll get back to you as soon as possible.
-      </p>
-      <router-link to="/" class="mt-6 inline-block">
-        <Button class="btn-outline" as="span">Return Home</Button>
+  <div class="container mx-auto px-4 max-w-5xl text-center flex flex-col items-center justify-center min-h-[75vh]">
+    <Icon icon="material-symbols:check-circle" class="text-primary size-12"/>
+    <h1 class="text-2xl font-bold mb-4">Message Sent!</h1>
+    <p class="text-xl mb-4">Thanks for reaching out! I'll get back to you as soon as possible.</p>
+    <Button as-child variant="ghost">
+      <router-link to="/">
+        <Icon icon="material-symbols:arrow-left-alt" />
+        Return Home
       </router-link>
-    </div>
+    </Button>
   </div>
 </template>
+
+<style scoped>
+
+</style>

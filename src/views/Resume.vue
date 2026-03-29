@@ -1,128 +1,160 @@
-<script setup>
-import {onMounted, ref} from "vue";
-import {Button} from "../components/ui/button/index.js";
-import { vAutoAnimate } from '@formkit/auto-animate/vue'
+<script setup lang="ts">
+import resume from "@/march-2026.json";
+import {Button} from "@/components/ui/button/index.js";
+import {Icon} from "@iconify/vue";
+import {vAutoAnimate} from "@formkit/auto-animate/vue";
 
-const resume = ref(null);
+const skillIcons: { [key: string]: string } = {
+  "Java": "mdi:language-java",
+  "JavaScript": "mdi:language-javascript",
+  "TypeScript": "mdi:language-typescript",
+  "Python": "mdi:language-python",
+  "HTML": "mdi:language-html5",
+  "Tailwind CSS": "mdi:tailwind",
+  "SQL": "mdi:database",
+  "Vue.js": "mdi:vuejs",
+  "Nuxt": "mdi:nuxt",
+  "Docker": "mdi:docker",
+  "Git": "mdi:git",
+  "Woodpecker CI": "mdi:bird",
+  "Linux": "mdi:linux",
+  "REST APIs": "mdi:api",
+  "Azure": "mdi:microsoft-azure",
+  "MongoDB": "tabler:brand-mongodb",
+  "Metasploit": "mdi:toolbox",
+  "Multi-tier Clos Topologies": "mdi:layers",
+  "Network Security": "mdi:security",
+  "TCP/IP": "mdi:network",
+  "Firewall Configuration": "mdi:firewall",
+  "VPNs": "mdi:vpn",
+  "Wireshark": "simple-icons:wireshark",
+  "Nmap": "file-icons:nmap",
+  "NVIDIA GB200 NVL72 Racks": "mdi:server",
+  "NVLink Maintenance": "mdi:gpu",
+  "Fiber Optics": "pajamas:work-item-maintenance",
+  "Link Validation": "material-symbols:cable",
+}
 
-onMounted(async() => {
-  const res = await fetch('/resume.json')
-  resume.value = await res.json()
-})
+const linkIcons: { [key: string]: string } = {
+  "edward-zurakowski": "mdi:linkedin",
+  "Ejz9": "mdi:github",
+}
 </script>
 
 <template>
-  <div class="text-text bg-background/95 backdrop-blur-sm shadow-lg py-16 px-4 sm:px-6 lg:px-8" v-auto-animate>
-    <div class="max-w-4xl mx-auto" v-if="resume">
-      <!-- Header -->
-      <div class="flex items-center justify-between mb-2 flex-wrap gap-2">
+  <div v-if="resume" v-auto-animate
+       class="container mx-auto backdrop-blur-xs shadow-lg space-y-8 px-8 py-8 max-w-5xl"
+  >
+    <section>
+      <div class="flex items-center justify-between flex-wrap-reverse">
         <h1 class="text-4xl font-bold mb-2">{{ resume.basics.name }}</h1>
-        <Button as="a"
-                href="/github-redacted.pdf"
-                download
-                variant="outline"
-                class="btn-outline"
+        <Button
+            as="a"
+            href="/march-2026-redacted.pdf"
+            download
+            variant="outline"
+            class="flex w-full md:w-auto py-8 md:py-0 mb-4 md:mb-0"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
-            <path d="M3 3a1 1 0 011-1h4v2H5v12h10V4h-3V2h4a1 1 0 011 1v14a1 1 0 01-1 1H4a1 1 0 01-1-1V3z"/>
-            <path d="M9 7v4H7l3 3 3-3h-2V7H9z"/>
-          </svg>
+          <Icon icon="material-symbols:download" />
           Download Resume (PDF)
         </Button>
       </div>
-
-      <!-- Headline -->
-      <p class="text-lg text-text-muted mb-4">{{ resume.basics.headline }}</p>
-
-      <!-- Contact Info -->
-      <div class="text-sm text-text-muted space-y-1 mb-6">
-        <p><strong>Email: </strong>
-          <a :href="`mailto:${resume.basics.email}`" class="text-accent hover:underline">{{ resume.basics.email }}</a>
-        </p>
-        <p><strong>GitHub: </strong>
-          <a href="https://github.com/Ejz9" class="text-accent hover:underline">github.com/Ejz9</a>
-        </p>
-        <p><strong>LinkedIn: </strong>
-          <a href="https://linkedin.com/in/edward-zurakowski" class="text-accent hover:underline">linkedin.com/in/edward-zurakowski</a>
-        </p>
-        <p class="italic text-xs mt-2">This version is redacted for privacy. A full version is available upon request.</p>
+      <h3 class="text-2xl text-muted-foreground mb-4">{{ resume.basics.headline }}</h3>
+      <div class="flex flex-wrap gap-2">
+        <Button
+            as="a"
+            variant="outline"
+            :href="resume.basics.website.url"
+            target="_blank"
+        >
+          <Icon icon="material-symbols:web-asset" />
+          {{ resume.basics.website.url }}
+        </Button>
+        <Button
+            as="a"
+            variant="outline"
+            v-for="item in resume.basics.customFields"
+            :key="item.id"
+            :href="item.link"
+            target="_blank"
+        >
+          <Icon v-if="linkIcons[item.text]" :icon="linkIcons[item.text]" />
+          {{ item.text }}
+        </Button>
       </div>
+    </section>
 
-      <!-- Education -->
-      <section class="mb-8">
-        <h2 class="text-2xl font-semibold mb-2">Education</h2>
-        <div v-for="edu in resume.sections.education.items" :key="edu.id" class="mb-4">
-          <p class="font-medium">{{ edu.institution }}</p>
-          <p class="text-text-muted">{{ edu.area }}</p>
-          <p class="text-sm text-text-muted">{{ edu.date }}</p>
-          <div class="mt-2">
-            <p class="text-xs font-semibold text-text-muted uppercase tracking-wider mb-1">Relevant Coursework</p>
-            <div class="flex flex-wrap gap-2">
-              <span v-for="course in edu.summary" :key="course" class="text-accent text-xs px-2 py-1 rounded-md border">
-                {{ course }}
-              </span>
-            </div>
-          </div>
+    <section>
+      <h2 class="text-2xl font-semibold mb-2">Education</h2>
+      <div v-for="education in resume.sections.education.items" :key="education.id" class="mb-4">
+        <p class="font-bold">{{ education.school }}</p>
+        <div class="flex flex-col md:flex-row md:justify-between">
+          <p class="text-primary">{{ education.area }}</p>
+          <p class="text-muted-foreground">{{ education.period }}</p>
         </div>
-      </section>
-
-      <!-- Experience -->
-      <section class="mb-8">
-        <h2 class="text-2xl font-semibold mb-2">Experience</h2>
-        <div v-for="exp in resume.sections.experience.items" :key="exp.id" class="mb-4">
-          <p class="font-medium">{{ exp.company }}</p>
-          <p class="text-text-muted">{{ exp.position }} | {{ exp.date }}</p>
-          <ul class="list-disc list-inside mt-2 space-y-1 text-text-muted">
-            <li v-for="item in exp.summary" :key="item">{{ item }}</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- Skills -->
-      <section class="mb-8">
-        <h2 class="text-2xl font-semibold mb-2">Skills</h2>
-        <div class="grid grid-cols-1 gap-4 text-text-muted">
-          <div v-for="skill in resume.sections.skills.items" :key="skill.id">
-            <p class="font-semibold text-text">{{ skill.name }}</p>
-            <p>{{ skill.description }}</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Projects -->
-      <section class="mb-8">
-        <h2 class="text-2xl font-semibold mb-2">Projects</h2>
-        <div v-for="project in resume.sections.projects.items" :key="project.id" class="mb-4">
-          <p class="font-medium">{{ project.name }}</p>
-          <p class="text-sm text-text-muted">{{ project.date }}</p>
-          <ul class="list-disc list-inside mt-2 space-y-1 text-text-muted">
-            <li v-for="item in project.summary" :key="item">{{ item }}</li>
-          </ul>
-        </div>
-      </section>
-
-      <!-- Certifications & Awards -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        <!--
-        <section>
-          <h2 class="text-2xl font-semibold mb-2">Certifications</h2>
-          <ul class="text-sm space-y-1 text-text-muted">
-            <li v-for="cert in resume.sections.certifications.items" :key="cert.id">
-              {{ cert.name }} – {{ cert.date }}
-            </li>
-          </ul>
-        </section>
-        -->
-        <section>
-          <h2 class="text-2xl font-semibold mb-2">Awards</h2>
-          <ul class="space-y-1 text-text-muted">
-            <li v-for="award in resume.sections.awards.items" :key="award.id">
-              {{ award.title }} – {{ award.date }}
-            </li>
-          </ul>
-        </section>
       </div>
-    </div>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-semibold mb-2">Experience</h2>
+      <div v-for="experience in resume.sections.experience.items" :key="experience.id" class="mb-4">
+        <div class="flex flex-col md:flex-row md:justify-between">
+          <p class="font-bold">{{ experience.company }}</p>
+          <p class="text-muted-foreground">{{ experience.location }}</p>
+        </div>
+        <div class="flex flex-col md:flex-row md:justify-between">
+          <p class="text-primary">{{ experience.position }}</p>
+          <p class="text-muted-foreground">{{ experience.period }}</p>
+        </div>
+
+        <ul class="list-disc list-outside ml-5 mt-2  space-y-1">
+          <li v-for="item in experience.description" :key="item">{{ item }}</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-semibold mb-2">Skills</h2>
+      <div v-for="category in resume.sections.skills.items" :key="category.id" class="flex flex-col">
+        <p class="font-bold">{{ category.name }}</p>
+        <div class="flex flex-wrap gap-2 mt-2">
+          <p v-for="skill in category.proficiency.split(', ')"
+             :key="skill"
+             class="flex items-center gap-2 border px-4 py-2 rounded-full text-sm shadow-sm">
+            <Icon v-if="skillIcons[skill]" :icon="skillIcons[skill]" />
+            {{ skill }}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-semibold mb-2">Projects</h2>
+      <div v-for="project in resume.sections.projects.items" :key="project.id" class="mb-4">
+        <div class="flex flex-col md:flex-row md:justify-between">
+          <p class="font-bold">{{ project.name }}</p>
+          <p class="text-muted-foreground">{{ project.period }}</p>
+        </div>
+
+        <ul class="list-disc list-outside ml-5 mt-2 space-y-1">
+          <li v-for="item in project.description" :key="item">{{ item }}</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-semibold mb-2">Awards</h2>
+      <div v-for="award in resume.sections.awards.items" :key="award.id">
+        <div class="flex flex-col md:flex-row md:justify-between">
+          <p class="">{{ award.title }}</p>
+          <p class="text-muted-foreground">{{ award.date }}</p>
+        </div>
+
+        <p class="font-bold">{{ award.awarder }}</p>
+      </div>
+    </section>
+
+    <p class="italic text-xs text-muted-foreground">This version is redacted for privacy. A full version is available upon request.</p>
   </div>
 </template>
 

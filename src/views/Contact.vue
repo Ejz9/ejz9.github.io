@@ -1,82 +1,68 @@
-<script setup>
-import { useForm } from 'vee-validate'
-import { toTypedSchema } from '@vee-validate/zod'
-import * as z from 'zod'
-import { vAutoAnimate } from '@formkit/auto-animate/vue'
+<script setup lang="ts">
+import {toTypedSchema} from "@vee-validate/zod";
+import * as z from "zod";
+import {useForm} from "vee-validate";
 
-import {
-  FormField,
-  FormItem,
-  FormLabel,
-  FormControl,
-  FormMessage
-} from '@/components/ui/form'
-import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
-import { Button } from '@/components/ui/button'
+import {Field, FieldError, FieldGroup, FieldLabel} from "@/components/ui/field/index";
+import {Input} from "@/components/ui/input/index";
+import {Textarea} from "@/components/ui/textarea/index";
+import {Button} from "@/components/ui/button/index";
+import {ref} from "vue";
 
 const formSchema = toTypedSchema(z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters').max(50),
-  email: z.string().email('Enter a valid email'),
-  message: z.string().min(10, 'Message must be at least 10 characters').max(1000)
+  name: z.string().min(2, "Name must be at least 2 characters").max(50),
+  email: z.email("Enter a valid email"),
+  message: z.string().min(10, "Message must be at least 10 characters").max(1000)
 }))
 
-const { handleSubmit } = useForm({ validationSchema: formSchema })
-const onSubmit = () => {
-  // let FormSubmit handle it
-}
+const { handleSubmit, errors, defineField } = useForm({ validationSchema: formSchema })
+
+const [name, nameProps] = defineField("name")
+const [email, emailProps] = defineField("email")
+const [message, messageProps] = defineField("message")
+
+const formRef = ref<HTMLFormElement | null>(null)
+
+const onSubmit = handleSubmit(() => {
+  if (formRef.value) formRef.value.submit();
+})
 </script>
 
-
 <template>
-  <div class="text-text bg-background py-16 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-4xl mx-auto">
-      <h1 class="text-4xl font-bold text-center mb-12">Get In Touch</h1>
+  <div class="container mx-auto px-4 max-w-5xl">
+    <h1 class="text-4xl font-bold text-center mb-12">Get In Touch</h1>
+    <form
+        ref="formRef"
+        @submit="onSubmit()"
+        method="POST"
+        action="https://formsubmit.co/2578e0bf107458213b1057fc8c9700ab"
+    >
+      <input type="text" name="_honey" style="display: none" tabindex="-1" />
+      <input type="hidden" name="_captcha" value="false" />
+      <input type="hidden" name="_next" value="https://ztree.dev/thank-you" />
 
-      <div class="rounded-xl border border-border bg-white/10 dark:bg-zinc-900/50 backdrop-blur-md shadow-2xl p-8 transition-colors duration-300">
-        <form
-            @submit="handleSubmit(onSubmit)"
-            method="POST"
-            action="https://formsubmit.co/2578e0bf107458213b1057fc8c9700ab"
-            class="space-y-6"
-        >
-          <input type="text" name="_honey" style="display: none" tabindex="-1" />
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_next" value="https://ztree.dev/#/thank-you" />
-
-          <FormField name="name" v-slot="{ componentField }">
-            <FormItem v-auto-animate>
-              <FormLabel>Name</FormLabel>
-              <FormControl>
-                <Input type="text" placeholder="Jane Doe" v-bind="componentField" />
-              </FormControl>
-              <FormMessage class="text-red-500 dark:text-red-400 transition-colors duration-200"/>
-            </FormItem>
-          </FormField>
-
-          <FormField name="email" v-slot="{ componentField }">
-            <FormItem v-auto-animate>
-              <FormLabel>Email</FormLabel>
-              <FormControl>
-                <Input type="email" placeholder="jane@example.com" v-bind="componentField" />
-              </FormControl>
-              <FormMessage class="text-red-500 dark:text-red-400 transition-colors duration-200"/>
-            </FormItem>
-          </FormField>
-
-          <FormField name="message" v-slot="{ componentField }">
-            <FormItem v-auto-animate>
-              <FormLabel>Message</FormLabel>
-              <FormControl>
-                <Textarea rows="5" placeholder="Your message..." v-bind="componentField" />
-              </FormControl>
-              <FormMessage class="text-red-500 dark:text-red-400 transition-colors duration-200"/>
-            </FormItem>
-          </FormField>
-
-          <Button class="btn-outline" type="submit">Send Message</Button>
-        </form>
-      </div>
-    </div>
+      <FieldGroup class="rounded-xl bg-secondary/60 backdrop-blur-xs shadow-2xl p-8">
+        <Field>
+          <FieldLabel for="name">Name</FieldLabel>
+          <Input id="name" name="name" type="text" placeholder="Jane Doe" v-model="name" v-bind="nameProps"/>
+          <FieldError v-if="errors.name" class="text-red-500">{{ errors.name }}</FieldError>
+        </Field>
+        <Field>
+          <FieldLabel for="email">Email</FieldLabel>
+          <Input id="email" name="email" type="email" placeholder="jane@example.com" v-model="email" v-bind="emailProps"/>
+          <FieldError v-if="errors.email" class="text-red-500">{{ errors.email }}</FieldError>
+        </Field>
+        <Field>
+          <FieldLabel for="message">Message</FieldLabel>
+          <Textarea id="message" name="message" :rows="5" placeholder="Your message..." v-model="message" v-bind="messageProps"/>
+          <FieldError v-if="errors.message" class="text-red-500">{{ errors.message }}</FieldError>
+        </Field>
+        <Button type="submit">Send Message</Button>
+      </FieldGroup>
+    </form>
   </div>
 </template>
+
+<style scoped>
+
+</style>
