@@ -1,12 +1,14 @@
 <script setup>
 import Navbar from "@/components/NavBar.vue";
 import Footer from "@/components/Footer.vue";
+import Constellation from "@/components/Constellation.vue";
 </script>
 
 <template>
   <div class="flex flex-col min-h-dvh">
+    <Constellation />
     <Navbar />
-    <main class="flex-grow">
+    <main class="grow mt-16">
       <router-view />
     </main>
     <Footer class="hidden md:block"/>
