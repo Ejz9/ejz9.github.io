@@ -29,7 +29,7 @@ const onSubmit = handleSubmit((values) => {
 </script>
 
 <template>
-  <div class="container mx-auto px-4 max-w-4xl">
+  <div class="container mx-auto px-4 max-w-5xl">
     <h1 class="text-4xl font-bold text-center mb-12">Get In Touch</h1>
     <form
         ref="formRef"
@@ -41,7 +41,7 @@ const onSubmit = handleSubmit((values) => {
       <input type="hidden" name="_captcha" value="false" />
       <input type="hidden" name="_next" value="https://ztree.dev/#/thank-you" />
 
-      <FieldGroup class="rounded-xl bg-secondary/50 backdrop-blur-md shadow-2xl p-8">
+      <FieldGroup class="rounded-xl bg-secondary/60 backdrop-blur-xs shadow-2xl p-8">
         <Field>
           <FieldLabel for="name">Name</FieldLabel>
           <Input id="name" name="name" type="text" placeholder="Jane Doe" v-model="name" v-bind="nameProps"/>

@@ -14,7 +14,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="container mx-auto px-4 max-w-4xl text-center flex flex-col items-center justify-center min-h-[75vh]">
+  <div class="container mx-auto px-4 max-w-5xl text-center flex flex-col items-center justify-center min-h-[75vh]">
     <Icon icon="material-symbols:check-circle" class="text-primary size-12"/>
     <h1 class="text-2xl font-bold mb-4">Message Sent!</h1>
     <p class="text-xl mb-4">Thanks for reaching out! I'll get back to you as soon as possible.</p>

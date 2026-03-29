@@ -146,9 +146,5 @@
 }
 
 .card {
-  @apply bg-secondary/60 backdrop-blur-md border border-border/50 rounded-2xl transition-colors duration-300;
-}
-
-.text-destructive {
-  color: oklch(60% 0.2 25);
+  @apply bg-secondary/60 backdrop-blur-xs border border-border/50 rounded-2xl transition-colors duration-300;
 }
