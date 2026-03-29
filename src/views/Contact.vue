@@ -39,7 +39,7 @@ const onSubmit = handleSubmit(() => {
     >
       <input type="text" name="_honey" style="display: none" tabindex="-1" />
       <input type="hidden" name="_captcha" value="false" />
-      <input type="hidden" name="_next" value="https://ztree.dev/#/thank-you" />
+      <input type="hidden" name="_next" value="https://ztree.dev/thank-you" />
 
       <FieldGroup class="rounded-xl bg-secondary/60 backdrop-blur-xs shadow-2xl p-8">
         <Field>
