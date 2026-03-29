@@ -2,13 +2,13 @@
 import {Button} from "@/components/ui/button/index.ts";
 import {Icon} from "@iconify/vue";
 import ProjectCard from "@/components/ProjectCard.vue";
-import projects from "/public/projects.json";
+import projects from "@/projects.json";
 </script>
 
 <template>
   <div class="flex flex-col items-center text-center mx-4">
     <section class="mb-20">
-      <h1 class="text-5xl font-extrabold font-mono text-gradient typing-text mb-4 drop-shadow-[0_0_0.3rem_#522bed]">Hello World!</h1>
+      <h1 class="text-5xl font-extrabold font-mono text-gradient typing-text mb-4">Hello World!</h1>
       <h1 class="text-5xl font-bold mb-4">Edward Zurakowski</h1>
       <h3 class="text-2xl font-light mb-8">Full Stack Tinkerer</h3>
       <div class="mt-8 inline-flex gap-4">

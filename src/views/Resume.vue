@@ -1,5 +1,5 @@
 <script setup>
-import resume from "/public/march-2026.json";
+import resume from "@/march-2026.json";
 import {Button} from "@/components/ui/button/index.js";
 import {Icon} from "@iconify/vue";
 import {vAutoAnimate} from "@formkit/auto-animate/vue";
@@ -43,7 +43,7 @@ const linkIcons = {
 
 <template>
   <div v-if="resume" v-auto-animate
-       class="container mx-auto bg-background/95 backdrop-blur-sm shadow-lg space-y-8 px-8 max-w-4xl"
+       class="container mx-auto backdrop-blur-xs shadow-lg space-y-8 px-8 py-8 max-w-5xl"
   >
     <section>
       <div class="flex items-center justify-between">
@@ -153,7 +153,7 @@ const linkIcons = {
       </div>
     </section>
 
-    <p class="italic text-xs text-muted-foreground mt-2">This version is redacted for privacy. A full version is available upon request.</p>
+    <p class="italic text-xs text-muted-foreground">This version is redacted for privacy. A full version is available upon request.</p>
   </div>
 </template>
 

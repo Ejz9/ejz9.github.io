@@ -1,5 +1,5 @@
 <script setup>
-import projects from "/public/projects.json"
+import projects from "@/projects.json"
 import {computed} from "vue";
 import {
   Carousel,

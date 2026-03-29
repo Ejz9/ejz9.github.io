@@ -1,5 +1,5 @@
 <script setup>
-import experiences from "/public/experiences.json";
+import experiences from "@/experiences.json";
 import {Icon} from "@iconify/vue";
 
 const experienceIcons = {
