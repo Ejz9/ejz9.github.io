@@ -43,7 +43,7 @@ const linkIcons = {
 
 <template>
   <div v-if="resume" v-auto-animate
-       class="container mx-auto bg-background/95 backdrop-blur-sm shadow-lg py-16 space-y-8 px-8 max-w-4xl"
+       class="container mx-auto bg-background/95 backdrop-blur-sm shadow-lg space-y-8 px-8 max-w-4xl"
   >
     <section>
       <div class="flex items-center justify-between">
@@ -58,7 +58,7 @@ const linkIcons = {
           Download Resume (PDF)
         </Button>
       </div>
-      <p class="text-2xl text-muted-foreground mb-4">{{ resume.basics.headline }}</p>
+      <h3 class="text-2xl text-muted-foreground mb-4">{{ resume.basics.headline }}</h3>
       <div class="flex gap-2">
         <Button
             as="a"
