@@ -8,7 +8,7 @@ import Constellation from "@/components/Constellation.vue";
   <div class="flex flex-col min-h-dvh">
     <Constellation />
     <Navbar />
-    <main class="grow mt-16 mb-8">
+    <main class="grow md:mt-16 mb-8">
       <router-view />
     </main>
     <Footer class="hidden md:block"/>

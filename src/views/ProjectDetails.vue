@@ -30,6 +30,7 @@ const project = computed(() => projects.find(project => project.id === props.id)
         <CarouselContent>
           <CarouselItem v-for="(image, index) in project.images" :key="index">
             <img :src="image" alt="Project Image" class="rounded-lg" />
+            <span class="backdrop-blur-sm font-medium mx-4 my-2 md:hidden pointer-events-none">{{ index + 1 }}/{{ project.images.length }}</span>
           </CarouselItem>
         </CarouselContent>
         <CarouselPrevious class="hidden md:flex" />
