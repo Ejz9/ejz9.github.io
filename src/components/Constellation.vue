@@ -130,9 +130,14 @@ onMounted(() => {
     animationFrameId = requestAnimationFrame(animate)
   }
 
+  let lastWidth = window.innerWidth
+
   window.addEventListener('resize', () => {
-    resize()
-    initParticles()
+    if (window.innerWidth !== lastWidth) {
+      lastWidth = window.innerWidth
+      resize()
+      initParticles()
+    }
   })
   window.addEventListener('mousemove', (e) => {
     mouse.x = e.clientX

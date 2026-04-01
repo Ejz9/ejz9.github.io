@@ -68,9 +68,11 @@ import projects from "@/projects.json";
 <style scoped>
 .typing-text {
   width: 12ch;
-  justify-self: center;
+  margin: 0 auto;
   white-space: nowrap;
-  animation: typing 1.2s steps(12) forwards, blink 0.5s step-end infinite alternate;
+  overflow: hidden;
+  border-right: 3px solid currentColor;
+  animation: typing 1.2s steps(12) forwards, blink 0.5s step-end 3 forwards;
 }
 
 @keyframes typing {
@@ -79,5 +81,6 @@ import projects from "@/projects.json";
 
 @keyframes blink {
   50% { border-color: transparent }
+  100% { border-color: transparent }
 }
 </style>
