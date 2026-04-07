@@ -37,15 +37,15 @@
           "company": "TEKsystems (Contracted to Microsoft)",
           "position": "Level 3 Data Center Technician",
           "location": "Mount Pleasant, WI",
-          "period": "January 2026 - Present",
+          "period": "January 2026 - April 2026",
           "website": {
             "url": "",
             "label": ""
           },
           "description": [
-            "Operate within Microsoft's Fairwater facility, supporting the maintenance of NVIDIA GB200 NVL72 rack systems.",
-            "Perform break-fix operations and fiber optic link validation across multi-tier topologies (T0/T1/T2), managing connections from IDF and MOR aggregations down to TOR switches and server boards.",
-            "Manage power-cycling, reseating, and physical integrity of compute components, including NVIDIA NVLinks, ensuring high-bandwidth GPU-GPU communication."
+            "Operated within Microsoft's Fairwater facility, supporting the deployment and maintenance of NVIDIA GB200 NVL72 rack systems.",
+            "Performed break-fix operations and fiber optic link validation across multi-tier topologies (T0/T1/T2), managing connections from IDF and MOR aggregations down to TOR switches.",
+            "Managed the physical-integrity, reseating, and power-cycling of compute components, including NVIDIA NVLinks, ensuring high-bandwidth GPU-GPU communication."
           ],
           "roles": []
         },
@@ -64,7 +64,7 @@
             "label": ""
           },
           "description": [
-            "Trained and mentored new employees, successfully managing order processing workflows and ensuring accurate fulfillment under high-pressure conditions."
+            "Trained new employees and managed order processing workflows, ensuring accurate fulfillment under high pressure."
           ],
           "roles": []
         }
@@ -206,7 +206,7 @@
           "hidden": true,
           "icon": "",
           "name": "Hardware & Data Center",
-          "proficiency": "NVIDIA GB200 NVL72 Racks, NVLink Maintenance, Fiber Optics, Link Validation",
+          "proficiency": "NVIDIA GB200 NVL72 Racks, NVLink Maintenance, Fiber Optic Cleaning & Inspection, Link Validation",
           "level": 0,
           "keywords": []
         }

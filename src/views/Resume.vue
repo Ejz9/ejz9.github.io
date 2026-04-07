@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import resume from "@/march-2026.json";
+import resume from "@/april-2026.json";
 import {Button} from "@/components/ui/button/index.js";
 import {Icon} from "@iconify/vue";
 import {vAutoAnimate} from "@formkit/auto-animate/vue";
@@ -31,7 +31,7 @@ const skillIcons: { [key: string]: string } = {
   "Nmap": "file-icons:nmap",
   "NVIDIA GB200 NVL72 Racks": "mdi:server",
   "NVLink Maintenance": "mdi:gpu",
-  "Fiber Optics": "pajamas:work-item-maintenance",
+  "Fiber Optic Cleaning & Inspection": "pajamas:work-item-maintenance",
   "Link Validation": "material-symbols:cable",
 }
 
@@ -50,7 +50,7 @@ const linkIcons: { [key: string]: string } = {
         <h1 class="text-4xl font-bold mb-2">{{ resume.basics.name }}</h1>
         <Button
             as="a"
-            href="/march-2026-redacted.pdf"
+            href="/april-2026-redacted.pdf"
             download
             variant="outline"
             class="flex w-full md:w-auto py-8 md:py-0 mb-4 md:mb-0"
