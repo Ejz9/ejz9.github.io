@@ -7,12 +7,25 @@ defineProps<{
   description: string,
   image?: string,
   link: string,
-  technologies: string[]
+  technologies: string[],
+  status: string
 }>();
 </script>
 
 <template>
   <div class="card shadow-lg hover:shadow-indigo-500/20 hover:shadow-2xl transition duration-200 hover:-translate-y-2 overflow-hidden">
+    <div class="absolute top-3 right-3 z-10">
+      <span 
+      class="text-xs font-semibold px-2.5 py-1 rounded-md uppercase tracking-wider shadow-sm text-white"
+      :class="{
+        'bg-amber-600': status === 'inp',
+        'bg-emerald-600': status === 'maintained',
+        'bg-primary': status === 'complete'
+        }"
+        >
+        {{ status === 'inp' ? 'In Progress' : status }}
+      </span>
+    </div>
     <img v-if="image" :src="image" alt="Project Image" class="w-full h-48 object-cover">
     <div class="m-6">
       <h3 class="text-xl font-semibold mb-2">{{ title }}</h3>

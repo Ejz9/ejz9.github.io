@@ -1,0 +1,180 @@
+{
+  "basics": {
+    "name": "Edward Zurakowski",
+    "headline": "Systems & Security Engineer",
+    "email": "contact@ztree.dev",
+    "website": {
+      "url": "https://ztree.dev",
+      "label": ""
+    },
+    "customFields": [
+      {
+        "id": "019ccfcc-d4c5-762e-b424-7a5fed60f87a",
+        "icon": "linkedin-logo",
+        "text": "edward-zurakowski",
+        "link": "https://www.linkedin.com/in/edward-zurakowski"
+      },
+      {
+        "id": "019ccfce-454d-765b-a914-7c597fd2d02b",
+        "icon": "github-logo",
+        "text": "Ejz9",
+        "link": "https://github.com/ejz9"
+      }
+    ]
+  },
+  "sections": {
+    "experience": {
+      "title": "Experience",
+      "columns": 1,
+      "hidden": false,
+      "items": [
+        {
+          "id": "019ccfd6-5c88-713f-b3ce-8fa4996a3a4a",
+          "hidden": false,
+          "company": "TEKsystems (Contracted to Microsoft)",
+          "position": "Level 3 Data Center Technician",
+          "location": "Mount Pleasant, WI",
+          "period": "January 2026 - April 2026",
+          "description": [
+            "Operated within Microsoft's Fairwater facility, supporting deployment and maintenance of NVIDIA GB200 NVL72 rack systems.",
+            "Performed fiber optic link validation across multi-tier topologies (T0/T1/T2) from IDF/MOR aggregations to TOR switches.",
+            "Resolved 30+ hardware break-fix tickets, managing physical integrity and power-cycling of compute components and NVLinks."
+          ]
+        },
+        {
+          "id": "jnyzcwt80zjpzaqv8ntfmort",
+          "hidden": false,
+          "company": "Noodles & Company",
+          "position": "Team Member",
+          "location": "Appleton, WI",
+          "period": "August 2020 - January 2026",
+          "description": [
+            "Trained team members and managed high-volume operational workflows under strict time constraints."
+          ]
+        }
+      ]
+    },
+    "education": {
+      "title": "Education",
+      "columns": 1,
+      "hidden": false,
+      "items": [
+        {
+          "id": "o7ncuyvv6dsumu1sv16h3hex",
+          "hidden": false,
+          "school": "University of Wisconsin-Whitewater",
+          "degree": "Master of Science in Computer Science (Cybersecurity Engineering Emphasis)",
+          "period": "December 2026"
+        },
+        {
+          "id": "nwbt2vesgsanzvitr9vpizoh",
+          "hidden": false,
+          "school": "University of Wisconsin-Whitewater",
+          "degree": "Bachelor of Science in Computer Science (Minor in Cybersecurity)",
+          "period": "December 2025",
+          "description": "<p></p>"
+        }
+      ]
+    },
+    "projects": {
+      "title": "Projects",
+      "columns": 1,
+      "hidden": false,
+      "items": [
+        {
+          "id": "torii_capstone_project",
+          "hidden": false,
+          "name": "Torii: Master's Applied Research Project",
+          "period": "May 2026 - Present",
+          "description": [
+            "Architecting a self-hosted gateway bridging Layer 7 verification with kernel-level eBPF packet filtering.",
+            "Building a memory-safe Rust reverse proxy to enforce strict identity verification via OpenID Connect.",
+            "Optimizing HTTP/3 using QUIC connection IDs with eBPF fast-path forwarding for persistent, E2EE tunnels."
+          ]
+        },
+        {
+          "id": "c2_server_project",
+          "hidden": false,
+          "name": "AI-Powered Command & Control (C2) Server",
+          "period": "January 2026 - May 2026",
+          "description": [
+            "Developed a Rust-based payload factory using semaphores for concurrent generation, processing jobs via Redis queues.",
+            "Engineered API endpoints for payload distribution, using PostgreSQL for state persistence and immutable audit logging.",
+            "Built robust background workers with automated filesystem cleanup routines to manage stale build artifacts."
+          ]
+        },
+        {
+          "id": "vbivq887lwogn2e9knbotur2",
+          "hidden": false,
+          "name": "Ember - Cloud-Native Code Snippet Manager",
+          "period": "September 2025 - December 2025",
+          "description": [
+            "Architected a full-stack snippet platform featuring complexity analysis, built with Nuxt, TypeScript, BetterAuth, and Tailwind.",
+            "Built an Admin Dashboard with real-time analytics and audit logging to monitor user activity.",
+            "Containerized the application with Docker and established an automated CI/CD pipeline via Woodpecker CI."
+          ]
+        },
+        {
+          "id": "o9xc7rxxtpbge00e0q7arc5r",
+          "hidden": false,
+          "name": "HomeServer",
+          "period": "2023 - Present",
+          "description": [
+            "Manage 50TB of data storage with automated Kopia backups for data resilience and integrity.",
+            "Orchestrate a self-hosted environment using Ubuntu Server, Docker, and Incus for service isolation.",
+            "Hardened network via NetBird VPN, Cloudflare, Caddy, and CrowdSec to control public exposure."
+          ]
+        }
+      ]
+    },
+    "skills": {
+      "title": "Skills",
+      "columns": 1,
+      "hidden": false,
+      "items": [
+        {
+          "id": "gkdtzo2nx8x7tqafqezv6zlz",
+          "hidden": false,
+          "icon": "",
+          "name": "Languages & Frameworks",
+          "proficiency": "Rust, Java, JavaScript, TypeScript, Python, HTML, Tailwind CSS, SQL, Vue.js, Nuxt"
+        },
+        {
+          "id": "h5lzbyikfr6u4h76eyxy0kfu",
+          "hidden": false,
+          "icon": "",
+          "name": "Tools & Technologies",
+          "proficiency": "Docker, Git, Woodpecker CI, Linux, REST APIs, Azure, MongoDB, Metasploit"
+        },
+        {
+          "id": "dpknhh1xzdbrucirtditqxqc",
+          "hidden": false,
+          "icon": "",
+          "name": "Networking & Security",
+          "proficiency": "Multi-tier Clos Topologies (IDF/MOR/TOR), Network Security, TCP/IP, Firewalls, VPNs, Wireshark, Nmap"
+        },
+        {
+          "id": "019ccfff-8df5-71d9-a075-85a88c7128e5",
+          "hidden": true,
+          "icon": "",
+          "name": "Hardware & Data Center",
+          "proficiency": "NVIDIA GB200 NVL72 Racks, NVLink Maintenance, Fiber Optic Cleaning & Inspection, Link Validation"
+        }
+      ]
+    },
+    "awards": {
+      "title": "Awards",
+      "columns": 1,
+      "hidden": false,
+      "items": [
+        {
+          "id": "jgbx6x2nccqlzdaco1827zzh",
+          "hidden": false,
+          "title": "Boy Scouts of America",
+          "awarder": "Eagle Scout",
+          "date": "September 2020"
+        }
+      ]
+    }
+  }
+}

@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import resume from "@/april-2026.json";
+import resume from "@/resume.json";
 import {Button} from "@/components/ui/button/index.js";
 import {Icon} from "@iconify/vue";
 import {vAutoAnimate} from "@formkit/auto-animate/vue";
 
 const skillIcons: { [key: string]: string } = {
+  "Rust": "mdi:language-rust",
   "Java": "mdi:language-java",
   "JavaScript": "mdi:language-javascript",
   "TypeScript": "mdi:language-typescript",
@@ -22,7 +23,7 @@ const skillIcons: { [key: string]: string } = {
   "Azure": "mdi:microsoft-azure",
   "MongoDB": "tabler:brand-mongodb",
   "Metasploit": "mdi:toolbox",
-  "Multi-tier Clos Topologies": "mdi:layers",
+  "Multi-tier Clos Topologies (IDF/MOR/TOR)": "mdi:layers",
   "Network Security": "mdi:security",
   "TCP/IP": "mdi:network",
   "Firewall Configuration": "mdi:firewall",
@@ -50,7 +51,7 @@ const linkIcons: { [key: string]: string } = {
         <h1 class="text-4xl font-bold mb-2">{{ resume.basics.name }}</h1>
         <Button
             as="a"
-            href="/april-2026-redacted.pdf"
+            href="/resume.pdf"
             download
             variant="outline"
             class="flex w-full md:w-auto py-8 md:py-0 mb-4 md:mb-0"
@@ -89,8 +90,23 @@ const linkIcons: { [key: string]: string } = {
       <div v-for="education in resume.sections.education.items" :key="education.id" class="mb-4">
         <p class="font-bold">{{ education.school }}</p>
         <div class="flex flex-col md:flex-row md:justify-between">
-          <p class="text-primary">{{ education.area }}</p>
+          <p class="text-primary">{{ education.degree }}</p>
           <p class="text-muted-foreground">{{ education.period }}</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="text-2xl font-semibold mb-2">Skills</h2>
+      <div v-for="category in resume.sections.skills.items" :key="category.id" class="flex flex-col">
+        <p class="font-bold">{{ category.name }}</p>
+        <div class="flex flex-wrap gap-2 mt-2">
+          <p v-for="skill in category.proficiency.split(', ')"
+             :key="skill"
+             class="flex items-center gap-2 border px-4 py-2 rounded-full text-sm shadow-sm">
+            <Icon v-if="skillIcons[skill]" :icon="skillIcons[skill]" />
+            {{ skill }}
+          </p>
         </div>
       </div>
     </section>
@@ -110,21 +126,6 @@ const linkIcons: { [key: string]: string } = {
         <ul class="list-disc list-outside ml-5 mt-2  space-y-1">
           <li v-for="item in experience.description" :key="item">{{ item }}</li>
         </ul>
-      </div>
-    </section>
-
-    <section>
-      <h2 class="text-2xl font-semibold mb-2">Skills</h2>
-      <div v-for="category in resume.sections.skills.items" :key="category.id" class="flex flex-col">
-        <p class="font-bold">{{ category.name }}</p>
-        <div class="flex flex-wrap gap-2 mt-2">
-          <p v-for="skill in category.proficiency.split(', ')"
-             :key="skill"
-             class="flex items-center gap-2 border px-4 py-2 rounded-full text-sm shadow-sm">
-            <Icon v-if="skillIcons[skill]" :icon="skillIcons[skill]" />
-            {{ skill }}
-          </p>
-        </div>
       </div>
     </section>
 

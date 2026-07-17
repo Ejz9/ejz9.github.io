@@ -15,7 +15,7 @@ const navItems = [
 ];
 
 const externalLinks = [
-  { name: 'ByteStash', href: 'https://bytes.ztree.dev/public/snippets' }
+  { name: 'Ember', href: 'https://ember.ztree.dev/' }
 ];
 </script>
 

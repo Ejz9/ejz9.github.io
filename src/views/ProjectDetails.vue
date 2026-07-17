@@ -39,7 +39,19 @@ const project = computed(() => projects.find(project => project.id === props.id)
     </div>
 
     <div class="mb-8">
-      <h3 class="text-2xl font-semibold mb-4">{{ project.heading }}</h3>
+        <div class="flex justify-between items-center mb-4 gap-4">
+          <h3 class="text-2xl font-semibold">{{ project.heading }}</h3>
+          <span 
+          class="shrink-0 text-xs font-semibold px-2.5 py-1 rounded-md uppercase tracking-wider shadow-sm text-white"
+          :class="{
+            'bg-amber-600': project.status === 'inp',
+            'bg-emerald-600': project.status === 'maintained',
+            'bg-primary': project.status === 'complete'
+            }"
+            >
+            {{ project.status === 'inp' ? 'In Progress' : project.status }}
+          </span>
+        </div>
       <p class="mb-4 text-muted-foreground leading-relaxed" v-for="paragraph in project.description" :key="paragraph">
         {{ paragraph }}
       </p>

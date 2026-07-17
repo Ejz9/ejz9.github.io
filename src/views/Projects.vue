@@ -19,6 +19,7 @@ import ProjectCard from "@/components/ProjectCard.vue";
             :technologies="project.technologies"
             :link="project.id"
             :image="project.image || project.images?.[0]"
+            :status="project.status"
         />
       </router-link>
     </div>

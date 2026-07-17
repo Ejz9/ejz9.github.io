@@ -43,12 +43,13 @@ import projects from "@/projects.json";
       <h2 class="text-3xl text-gradient font-bold">Projects</h2>
       <div class="grid md:grid-cols-3 gap-6 mt-4">
         <ProjectCard
-            v-for="project in projects"
+            v-for="project in projects.slice(0,3)"
             :key="project.id"
             :title="project.name"
             :description="project.heading"
             :technologies="project.technologies"
             :link="project.id"
+            :status="project.status"
         />
       </div>
     </section>

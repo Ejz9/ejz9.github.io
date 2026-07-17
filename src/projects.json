@@ -1,5 +1,70 @@
 [
   {
+    "id": "torii",
+    "name": "Torii",
+    "heading": "A Zero Trust eBPF Powered E2EE Gateway.",
+    "description": [
+      "I am currently in the process of developing torii for my master's capstone applied research project. Torii is effectively the modern take on a reverse proxy, built in Rust with a central focus of zero trust. The core difference between it and other proxies is opinionated defaults and new features. Role-Based Access Control (RBAC), wildcard certificates with certificate renewal, end-to-end encryption (E2EE) using lightweight application sidecars, and an eBPF XDP bouncer.",
+      "This is not a strict list of all included or supported features."
+    ],
+    "images": [
+      "/torii.png"
+    ],
+    "technologies": [
+      "Rust",
+      "eBPF",
+      "Linux"
+    ],
+    "code": "https://github.com/Ejz9/torii",
+    "demo": null,
+    "status": "inp"
+  },
+  {
+    "id": "homeserver",
+    "name": "Home Server",
+    "heading": "Self-hosted Cloud.",
+    "description": [
+      "During my senior year of high school, I started tinkering with a 2010 Mac mini. I loaded a standard 22.04 Ubuntu install onto it and started the hobby of self-hosting, mainly game servers for Minecraft. During the spring of 2023, my second semester of college, I bought everything a gaming computer would require except a GPU. Thus, it became my first powerhouse of a server with a 5700G, 64GB of DDR4 RAM, and a 2TB 980 Pro NVMe SSD running Ubuntu Server 22.04 LTS. I avoided AM5 at the time, as I believed I might face instability with the new platform.",
+      "This powerhouse is where I learned a vast majority of Linux, Docker, and the various self-hosted tooling that are available. The headless environment forced me to grow comfortable with the CLI and enabled me to realize the actual capabilities of a server. Having built a home server, I have learned an incredible amount that has assisted me throughout my college experience, courses, and life. I've slowly refined my understanding of how computers from anyone's house to the cloud operate.",
+      "Now three years into running this, I decided my desktop rig and server were overdue for an upgrade. I shifted my desktop to AM5 and moved my 5700X3D to my server, repurposing my old RTX 3060 for media transcoding and local AI. During the three years, I have also purchased a 20TB and 26TB manufacture-recertified HDD around January 2024 and 2025, respectively. The intention of these is media and cloud storage in comparison to cloud-hosting options. Comically, in 2026, as of writing this, the same HDDs are significantly more expensive.",
+      "When I upgraded my server in the spring of 2026, I had planned to do a nuke and pave, as I called it. Once the spring semester was over for my graduate studies, I spent a week ensuring my backups were intact in the cloud, took a local copy, and committed to a major release upgrade of the OS with a clean install. I decided to swap to Ubuntu Server 26.04 as it was published in the spring during my studies, and I'd learned of some nice features present. Mainly sudo-rs instead of sudo and Incus being published in the apt repository.",
+      "Rebuilding the services on an updated OS I learned how to better structure my files for backups, properly back up my databases as dumps instead of live, check the integrity of my Kopia backups, and harden my Compose files while shifting them to Git. Stating these three after the fact is simple, but the planning and validation process took quite a bit of time. Months later I am still running with an uptime of 99-100%, and my system is incredibly low-maintenance. For those in the self-hosted hobby, this is something you only learn to appreciate over time. Tinkering with my stack is fun, but after a bit it's nice to have functional services that take care of themselves."
+    ],
+    "images": [
+      "/arcane.png"
+    ],
+    "technologies": [
+      "Linux",
+      "Ubuntu",
+      "Docker",
+      "Incus"
+    ],
+    "code": null,
+    "demo": null,
+    "status": "maintained"
+  },
+  {
+    "id": "aic2",
+    "name": "AI-Powered C2 Server",
+    "heading": "An AI-driven Command & Control infrastructure server.",
+    "description": [
+      "I co-developed in a group of eight for my graduate software engineering semester project. We created an AI-powered C2 server, and a majority of my development was focused on the backend. I developed a scalable, high-performance payload management pipeline. Featuring a concurrent Rust-based payload factory utilizing semaphores to manage build-job throttling safely and effectively.",
+      "Jobs are orchestrated via Redis queues, with background workers for processing tasks efficiently. API endpoints handle secure distribution, backed by PostgreSQL for state persistence and immutable audit logging. Automated filesystem cleanup routines were engineered to remove stale build artifacts while preserving database integrity for historical tracking.",
+      "Mirrored code from GitHub organization of the PayloadFactory and TeamServerAPI is avaliable on my self-hosted forgejo."
+    ],
+    "images": [
+      "/aic2.png"
+    ],
+    "technologies": [
+      "Rust",
+      "Redis",
+      "PostgreSQL"
+    ],
+    "code": "https://git.ztree.dev/uww-cs776-control-group-pub",
+    "demo": null,
+    "status": "complete"
+  },
+  {
     "id": "ember",
     "name": "Ember",
     "heading": "A cloud-native code snippet manager.",
@@ -21,7 +86,8 @@
       "Bun"
     ],
     "code": "https://github.com/Ejz9/ember",
-    "demo": "https://ember.ztree.dev"
+    "demo": "https://ember.ztree.dev",
+    "status": "complete"
   },
   {
     "id": "dota2",
@@ -41,7 +107,8 @@
       "Chart.js"
     ],
     "code": null,
-    "demo": null
+    "demo": null,
+    "status": "complete"
   },
   {
     "id": "portfolio",
@@ -57,6 +124,7 @@
       "TailwindCSS"
     ],
     "code": "https://github.com/Ejz9/ejz9.github.io",
-    "demo": "https://ztree.dev"
+    "demo": "https://ztree.dev",
+    "status": "maintained"
   }
 ]
