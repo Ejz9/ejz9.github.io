@@ -21,7 +21,7 @@
   },
   {
     "id": "homeserver",
-    "name": "Home Server",
+    "name": "HomeServer",
     "heading": "Self-hosted Cloud.",
     "description": [
       "During my senior year of high school, I started tinkering with a 2010 Mac mini. I loaded a standard 22.04 Ubuntu install onto it and started the hobby of self-hosting, mainly game servers for Minecraft. During the spring of 2023, my second semester of college, I bought everything a gaming computer would require except a GPU. Thus, it became my first powerhouse of a server with a 5700G, 64GB of DDR4 RAM, and a 2TB 980 Pro NVMe SSD running Ubuntu Server 22.04 LTS. I avoided AM5 at the time, as I believed I might face instability with the new platform.",
