@@ -109,7 +109,7 @@
           "name": "Ember - Cloud-Native Code Snippet Manager",
           "period": "September 2025 - December 2025",
           "description": [
-            "Architected a full-stack snippet platform featuring complexity analysis, built with Nuxt, TypeScript, BetterAuth, and Tailwind.",
+            "Architected a full-stack snippet platform featuring complexity analysis, built with Nuxt, TypeScript, BetterAuth, and Tailwind CSS.",
             "Built an Admin Dashboard with real-time analytics and audit logging to monitor user activity.",
             "Containerized the application with Docker and established an automated CI/CD pipeline via Woodpecker CI."
           ]
