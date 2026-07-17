@@ -36,9 +36,9 @@
           "location": "Mount Pleasant, WI",
           "period": "January 2026 - April 2026",
           "description": [
-            "Operated within Microsoft's Fairwater facility, supporting deployment and maintenance of NVIDIA GB200 NVL72 rack systems.",
+            "Operated within Microsoft's Fairwater facility, supporting deployment and maintenance of high-density NVIDIA GB200 NVL72 rack systems.",
             "Performed fiber optic link validation across multi-tier topologies (T0/T1/T2) from IDF/MOR aggregations to TOR switches.",
-            "Resolved 30+ hardware break-fix tickets, managing physical integrity and power-cycling of compute components and NVLinks."
+            "Resolved 30+ hardware break-fix tickets, managing physical integrity and power-cycling of compute components and NVIDIA NVLinks"
           ]
         },
         {
